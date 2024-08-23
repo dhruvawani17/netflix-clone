@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NETFLIX</title>
+    <link rel="icon" type="image/x-icon" href="assets/netflix-1-logo-svgrepo-com.svg">
+    <link rel="stylesheet" href="welcome2.css"> <!-- Ensure the correct CSS path -->
+</head>
+<body>
+    <nav>
+        <span><img class="logo" src="assets/logo.svg" alt="Netflix Logo"></span>
+        <div>
+            <button id="signout-button" class="btn btn-red-sm">Sign Out</button>
+        </div>
+    </nav>
+    <hr>
+    <br>
+    <div class="privacylogo">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" width="24" height="24" viewBox="0 0 24 24" role="img" data-icon="ShieldCheckmarkStandard" aria-hidden="true">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12.4061 1.08619C12.1476 0.971271 11.8524 0.971271 11.5939 1.08619L1.59387 5.53063C1.21945 5.69704 0.984428 6.07501 1.0008 6.48441C1.11201 9.2645 1.36208 12.7774 2.80051 15.8916C4.26941 19.0717 6.95244 21.7837 11.7603 22.9708C11.9177 23.0097 12.0823 23.0097 12.2397 22.9708C17.0476 21.7837 19.7306 19.0717 21.1995 15.8916C22.6379 12.7774 22.888 9.2645 22.9992 6.48441C23.0156 6.07501 22.7806 5.69704 22.4061 5.53063L12.4061 1.08619ZM4.61617 15.0529C3.46121 12.5525 3.15696 9.68464 3.02915 7.08136L12 3.09432L20.9709 7.08136C20.8431 9.68464 20.5388 12.5525 19.3838 15.0529C18.1819 17.6551 16.0369 19.9059 12 20.968C7.96307 19.9059 5.81813 17.6551 4.61617 15.0529ZM11.7071 15.7071L17.7071 9.70711L16.2929 8.29289L11 13.5858L8.70711 11.2929L7.29289 12.7071L10.2929 15.7071L11 16.4142L11.7071 15.7071Z" fill="currentColor"></path>
+        </svg>
+    </div>
+    <br>
+    <div class="step">STEP &nbsp<b>2</b>&nbsp OF <b>&nbsp4</b></div>
+    <div class="head">
+        <h1>Great, now let us verify your<br> email</h1>
+    </div>
+    <div class="message"></div>
+    <br>
+    <div class="text">Click the link we sent to your mail to verify.</div>
+    <br>
+    <div class="text2">Verifying your email will improve account security and <br> help you receive important Netflix communications.</div>
+    <br>
+    
+    <div class="btn" id="Next">
+        <button class="red" onclick="window.location.href='/welcome3'">Skip</button>
+    </div>
+    
+    <script>
+        document.getElementById('signout-button').addEventListener('click', function() {
+            window.location.href = '/';
+        });
+
+        // Extract the email from the URL query parameters
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // Display the email in the message div
+        document.addEventListener('DOMContentLoaded', function() {
+            const email = getQueryParam('email');
+            if (email) {
+                document.querySelector('.message').innerHTML = `Click the link we sent to "<strong>${email}</strong>" to verify.`;
+            }
+        });
+    </script>
+</body>
+</html>

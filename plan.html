@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NETFLIX PLANS</title>
+    <link rel="icon" type="image/x-icon" href="assets/netflix-1-logo-svgrepo-com.svg">
+    <link rel="stylesheet" href="plan.css">
+</head>
+<body>
+    <nav>
+        <span><img class="logo" src="assets/logo.svg" onclick="window.location.href='http://localhost:3000'" alt="Netflix Logo"></span>
+        <div>
+            <button id="signout-button" class="btn btn-red-sm">Sign Out</button>
+        </div>
+    </nav>
+    <hr>
+    <div class="pricing-container">
+        <div class="card mobile" onclick="selectCard(this)">
+            <div class="header">
+                <h2>Mobile</h2>
+                <p>480p</p>
+            </div>
+            <div class="details">
+                <p>Monthly price<br><strong>₹149</strong></p>
+                <p>Video and sound quality<br><strong>Fair</strong></p>
+                <p>Resolution<br><strong>480p</strong></p>
+                <p>Supported devices<br><strong>Mobile phone, tablet</strong></p>
+                <p>Devices your household can watch at the same time<br><strong>1</strong></p>
+                <p>Download devices<br><strong>1</strong></p>
+            </div>
+        </div>
+        <div class="card basic" onclick="selectCard(this)">
+            <div class="header">
+                <h2>Basic</h2>
+                <p>720p</p>
+                <div class="most-popular">Most Popular</div>
+            </div>
+            <div class="details">
+                <p>Monthly price<br><strong>₹199</strong></p>
+                <p>Video and sound quality<br><strong>Good</strong></p>
+                <p>Resolution<br><strong>720p (HD)</strong></p>
+                <p>Supported devices<br><strong>TV, computer, mobile phone, tablet</strong></p>
+                <p>Devices your household can watch at the same time<br><strong>1</strong></p>
+                <p>Download devices<br><strong>1</strong></p>
+            </div>
+        </div>
+        <div class="card standard" onclick="selectCard(this)">
+            <div class="header">
+                <h2>Standard</h2>
+                <p>1080p</p>
+            </div>
+            <div class="details">
+                <p>Monthly price<br><strong>₹499</strong></p>
+                <p>Video and sound quality<br><strong>Great</strong></p>
+                <p>Resolution<br><strong>1080p (Full HD)</strong></p>
+                <p>Supported devices<br><strong>TV, computer, mobile phone, tablet</strong></p>
+                <p>Devices your household can watch at the same time<br><strong>2</strong></p>
+                <p>Download devices<br><strong>2</strong></p>
+            </div>
+        </div>
+        <div class="card premium" onclick="selectCard(this)">
+            <div class="header">
+                <h2>Premium</h2>
+                <p>4K + HDR</p>
+            </div>
+            <div class="details">
+                <p>Monthly price<br><strong>₹649</strong></p>
+                <p>Video and sound quality<br><strong>Best</strong></p>
+                <p>Resolution<br><strong>4K (Ultra HD) + HDR</strong></p>
+                <p>Spatial audio (immersive sound)<br><strong>Included</strong></p>
+                <p>Supported devices<br><strong>TV, computer, mobile phone, tablet</strong></p>
+                <p>Devices your household can watch at the same time<br><strong>4</strong></p>
+                <p>Download devices<br><strong>6</strong></p>
+            </div>
+        </div>
+    </div>
+<div class="info">HD (720p), Full HD (1080p), Ultra HD (4K) and HDR availability subject to your internet service and device capabilities. Not all content is available in all resolutions. See our Terms of Use for more details.
+    Only people who live with you may use your account. Watch on 4 different devices at the same time with Premium, 2 with Standard, and 1 with Basic and Mobile.</div>
+    <div class="btn" id="Next">
+        <button class="red" onclick="window.location.href='http://localhost:3000/payment'">Next</button>
+
+    <script>
+        document.getElementById('signout-button').addEventListener('click', function() {
+            window.location.href = 'http://localhost:3000';
+        });
+
+        function selectCard(card) {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(c => {
+                c.classList.remove('selected');
+                const tick = c.querySelector('.tick');
+                if (tick) {
+                    tick.remove();
+                }
+            });
+
+            card.classList.add('selected');
+            const tick = document.createElement('div');
+            tick.className = 'tick';
+            tick.innerHTML = '&#10003;'; // Checkmark symbol
+            card.querySelector('.header').appendChild(tick);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=Martel+Sans:wght@600&family=Poppins:wght@300;400;700&display=swap');
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fffefe;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+nav {
+display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: rgba(255, 255, 255, 0);
+
+    position: static;
+    top: 0;
+    z-index: 10;
+}
+
+.logo {
+    width: 167px;
+    height: 45px;
+    cursor: pointer;
+}
+
+.btn-red-sm {
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    background-color: transparent;
+}
+
+.btn-red-sm:hover {
+    text-decoration: underline;
+}
+
+.pricing-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
+}
+
+.card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 240px;
+    border: 1px solid #dcdcdc;
+    margin: 10px;
+    cursor: pointer;
+    transition: box-shadow 0.2s ease;
+}
+
+.card.selected {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.card .tick {
+    background-color: rgb(254, 254, 254);
+    color: rgb(181, 8, 255);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 81px;
+    right: 8px;
+}
+
+.card .header {
+    border-radius: 8px 8px 0 0;
+    color: white;
+    padding: 20px;
+    position: relative;
+}
+
+.card .header h2 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+.card .details {
+    padding: 20px;
+}
+
+.card .details p {
+    margin: 10px 0;
+    font-size: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #dcdcdc;
+}
+
+.card .details p:last-child {
+    border-bottom: none;
+}
+
+.card .details p strong {
+    display: block;
+    margin-top: 5px;
+}
+
+.mobile .header {
+    background: linear-gradient(135deg, #0f1edd, #53d4ff);
+}
+
+.basic .header {
+    background: linear-gradient(135deg, #6A0DAD, #D72EFF);
+}
+
+.basic .header .most-popular {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    background: white;
+    color: #6A0DAD;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+.standard .header {
+    background: linear-gradient(135deg, #0f1edd, #a06aff);
+}
+
+.premium .header {
+    background: linear-gradient(135deg, #E50064, #0082FF);
+}
+
+@media (max-width: 768px) {
+    .navbar, .pricing-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .pricing-container {
+        gap: 10px;
+    }
+}
+.red{
+    background-color: red;
+    color: white;
+    border: transparent;
+    border-radius: 4px;
+    font-size: 24px;
+    font-weight: 400;
+    min-height: 64px;
+    display: flex;
+    align-items: center;
+    width: 350px;
+    text-align: center;
+    justify-content: center;
+    margin: auto;
+}
+.btn{
+    display: flex;
+}
+.red:hover {
+    background-color: rgb(244, 7, 7);
+    cursor: pointer;
+}
+.info{
+    color: rgb(125, 102, 102);
+    font-family: sans-serif;
+margin-top: 5px;
+margin-left: 50px;
+margin-right: 50px;
+margin-bottom: 30px;
+display: flex;
+justify-content: center;
+align-items: center;
+text-align: justify;
+}

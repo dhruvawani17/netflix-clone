@@ -1,0 +1,181 @@
+
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    /* Add padding for some space */
+}
+
+/* Style the logo */
+.logo {
+    width: 167px;
+    height: 45px;
+    cursor: pointer;
+}
+
+
+
+/* Ensure the button stays on the right */
+div {
+    display: flex;
+    align-items: center;
+}
+
+.btn-red-sm {
+
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 25px;
+
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    background-color: transparent;
+    width: 7790pxx;
+    height: 90px;
+}
+
+/* Add hover effect with underline */
+.btn-red-sm:hover {
+    text-decoration: underline;
+}
+
+.privacylogo {
+    display: flex;
+    justify-content: center;
+    /* Centers horizontally */
+    align-items: center;
+    /* Centers vertically */
+    height: 90px;
+    width: 40px;
+    margin: auto;
+}
+
+.logo1 {
+    max-width: 100%;
+    /* Ensures the image scales with the container */
+}
+
+.step {
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+
+}
+
+.head {
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    /* Arrange items in a column (one below the other) */
+    justify-content: center;
+    /* Center vertically */
+    align-items: center;
+    /* Center horizontally */
+    text-align: center;
+    /* Center text within each div */
+}
+
+.b1,
+.b2,
+.b3 {
+    font-size: 20px;
+    font-family: sans-serif;
+    /* Optional: Adds some space between lines */
+}
+
+.red {
+    background-color: rgb(255, 20, 20);
+    color: white;
+    border: transparent;
+    border-radius: 4px;
+    font-size: 30px;
+    font-weight: 600;
+    min-height: 64px;
+    display: flex;
+    align-items: center;
+    width: 410px;
+    text-align: center;
+    justify-content: center;
+    margin: auto;
+}
+
+.btn {
+    display: flex;
+}
+
+.red:hover {
+    background-color: rgb(244, 7, 7);
+    cursor: pointer;
+}
+
+.text {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    font-family: sans-serif;
+    color: rgb(67, 64, 64);
+    font-weight: 300;
+    font-size: 18px;
+}
+
+.text2 {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    font-family: sans-serif;
+    color: rgb(67, 64, 64);
+    font-weight: 300;
+    font-size: 18px;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    /* Arrange items vertically */
+    align-items: center;
+    /* Center items horizontally */
+}
+
+ul {
+    list-style: none;
+    /* Remove default bullets */
+    /* Allow wrapping if needed */
+    
+    margin: auto;
+    font-size: 20px;
+    
+    /* Space between list items */
+}
+
+li {
+    align-items: center;
+}
+
+.checkmark {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+    /* Space between icon and text */
+    fill: red;
+    /* Red color for the checkmark */
+}

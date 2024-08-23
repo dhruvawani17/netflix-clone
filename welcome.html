@@ -1,0 +1,45 @@
+<!-- welcome.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NETFLIX</title>
+    <link rel="stylesheet" href="welcome.css">
+    <link rel="icon" type="image/x-icon" href="assets/netflix-1-logo-svgrepo-com.svg">
+</head>
+<body>
+    <nav>
+        <span><img class="logo" src="assets/logo.svg" onclick="window.location.href='http://localhost:3000'" alt="Netflix Logo"></span>
+        <div>
+            <button id="signout-button" class="btn btn-red-sm">Sign Out</button>
+        </div>
+
+    </nav>
+<hr>
+
+<div class="devicelogo">
+    <img class= logo1" width="350px"  src="https://assets.nflxext.com/ffe/siteui/acquisition/simplicity/Devices.png" alt="">
+</div>
+<div class="step">STEP &nbsp<b>1</b>&nbsp OF <b> &nbsp4</b></div>
+<div class="head"><h1>Finish setting up your <br> account </h1>
+</div>
+<section  class="main">
+<div class="b1">Netflix is personalised for you.</div>
+<div class="b2">Create a password to watch on any</div>
+<div class="b3">device at any time.</div>
+</section>
+<br>
+<br>
+<div class="btn" id="Next">
+    <button class="red" onclick="window.location.href='http://localhost:3000/welcome2'">Next</button>
+</div>
+<script>
+    document.getElementById('signout-button').addEventListener('click', function() {
+        window.location.href = 'http://localhost:3000';
+    });
+
+</script>
+
+</body>
+</html>
