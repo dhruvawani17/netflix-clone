@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix India – Watch TV Shows Online, Watch Movies Online</title>
+    <link rel="icon" type="image/x-icon" href="assets/netflix-1-logo-svgrepo-com.svg">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Martel+Sans:wght@600&family=Poppins:wght@300;400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: black;
+            font-family: 'Poppins', sans-serif;
+            color: white;
+        }
+
+        .logo {
+            margin: 20px;
+            padding: 10px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            text-align: start;
+        }
+
+        .main {
+            background-image: url("assets/project1\ header.jpg");
+            position: relative;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 644px;
+        }
+
+        .main .box {
+            height: 644px;
+            width: 100%;
+            opacity: 0.69;
+            background-color: black;
+            position: absolute;
+            top: 0;
+        }
+
+        nav {
+            max-width: 100vw;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: auto;
+            height: 100px;
+            padding: 0 20px;
+        }
+
+        nav img {
+            width: 130px;
+            position: relative;
+            z-index: 100;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .signin-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 350px;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.75);
+            padding: 30px;
+            border-radius: 5px;
+            z-index: 10;
+            opacity: 0.86;
+        }
+
+        .signin-container h1 {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .signin-container .form-control {
+            background-color: #333;
+            border: 1px solid #333;
+            color: white;
+        }
+
+        .signin-container .form-control::placeholder {
+            color: #8c8c8c;
+        }
+
+        .signin-container .btn-danger {
+            background-color: #e50914;
+            border-color: #e50914;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .signin-container .btn-secondary {
+            opacity: 0.89;
+            border-color: #fcfcfc;
+            color: rgb(255, 255, 255);
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .signin-container .text-muted {
+            color: #908686 !important;
+        }
+
+        .signin-container .text-white {
+            color: white !important;
+        }
+
+        .signin-container .recaptcha-info a {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            nav img {
+                width: 100px;
+            }
+
+            .signin-container {
+                padding: 20px;
+            }
+
+            .signin-container h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <nav>
+            <span><img class="logo" width="60" src="assets/logo.svg" onclick="window.location.href='http://localhost:3000'" alt="Netflix logo"></span>
+        </nav>
+        <div class="box"></div>
+        <div class="signin-container">
+            <h1 class="mb-4">Sign In</h1>
+            <form action="#" method="POST" class="signin-form">
+                <div class="mb-3">
+                    <input type="text" class="form-control" placeholder="Email or mobile number" required>
+                </div>
+                <div class="mb-3">
+                    <input type="password" class="form-control" placeholder="Password" required>
+                </div>
+                <button type="submit" class="btn btn-danger w-100 mb-3">Sign In</button>
+                <div class="text-center text-muted my-3">OR</div>
+                <button type="button" class="btn btn-secondary w-100 mb-3">Use a sign-in code</button>
+                <div class="text-center mb-3">
+                    <a href="#" class="text-muted">Forgot password?</a>
+                </div>
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="rememberMe">
+                        <label class="form-check-label text-muted" for="rememberMe">Remember me</label>
+                    </div>
+                </div>
+                <div class="text-center text-muted">
+                    New to Netflix? <a href="#" class="text-white">Sign up now.</a>
+                </div>
+            </form>
+            <div class="recaptcha-info text-center text-muted mt-4">
+                <p>This page is protected by Google reCAPTCHA to ensure you're not a bot. <a href="#" class="text-primary">Learn more.</a></p>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
