@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NETFLIX</title>
+    <link rel="stylesheet" href="id.css">
+    <link rel="icon" type="image/x-icon" href="assets/netflix-1-logo-svgrepo-com.svg">
+</head>
+<body>
+    <nav>
+        <span><img class="logo" src="assets/logo.svg" onclick="window.location.href='http://localhost:3000'" alt="Netflix Logo"></span>
+        <div>
+            <button id="signout-button" class="btn btn-red-sm">Sign Out</button>
+        </div>
+    </nav>
+    <hr>
+    <div class="outer-wrapper">
+        <div class="form-container">
+            <form>
+                <p class="step1">STEP <b>1</b> OF <b>4</b></p>
+                <h1>Create a password to start your membership</h1>
+                <h2>Just a few more steps and you're done! We hate paperwork, too.</h2>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Add a password" required>
+                <button type="submit" onclick="window.location.href='http://localhost:3000/welcome2'">Next</button>
+            </form>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="8"></div>
+    <script>
+        document.getElementById('signout-button').addEventListener('click', function() {
+            window.location.href = 'http://localhost:3000';
+        });
+    </script>
+</body>
+</html>

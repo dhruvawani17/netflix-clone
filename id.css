@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Martel+Sans:wght@600&family=Poppins:wght@300;400;700&display=swap');
+
+/* Style the navigation bar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+/* Style the logo */
+.logo {
+    width: 167px;
+    height: 45px;
+    cursor: pointer;
+}
+
+/* Ensure the button stays on the right */
+nav div {
+    display: flex;
+    align-items: center;
+}
+
+.btn-red-sm {
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 25px;
+    transition: all 0.3s ease;
+    font-weight: 700;
+    background-color: transparent;
+}
+
+.btn-red-sm:hover {
+    text-decoration: underline;
+}
+
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+main {
+    display: flex;
+    align-items: center;
+    height: calc(100vh - 75px);
+    background-color: #f8f8f8;
+    justify-content: space-around;
+
+}
+
+.outer-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.form-container {
+    background-color: #ffffff;
+    padding: 40px 60px;
+    max-width: 500px;
+    width: 100%;
+
+    
+}
+
+form p {
+    font-size: 13px;
+    color: #b3b3b3;
+    margin-bottom: 10px;
+    
+}
+
+form h1 {
+    font-size: 23px;
+    margin: 0;
+    margin-bottom: 8px;
+    
+}
+
+form h2 {
+    font-size: 18px;
+    color: #666666;
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+input[type="email"], input[type="password"] {
+    width: 75%;
+    height: 30px;
+    padding: 10px;
+    margin-bottom: 30px;
+    border: 1px solid #dbdbdb;
+    border-radius: 3px;
+    text-align: left; /* Ensure text is aligned to the left */
+    justify-content: space-between;
+}
+
+button {
+    background-color: #e50914;
+    color: #ffffff;
+    border: none;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 3px;
+    cursor: pointer;
+    width: 80%;
+}
+
+.step1 {
+    color: black;
+    font-size: 15px;
+    font-weight: 500;
+}
