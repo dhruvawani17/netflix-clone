@@ -78,6 +78,15 @@ app.get('/terms-use', (req, res) => {
 app.get('/privacy', (req, res) => {
     res.sendFile(path.join(__dirname, 'privacy.html'));
 });
+app.get('/email', (req, res) => {
+    res.sendFile(path.join(__dirname, 'id.html'));
+});
+app.get('/sign-in', (req, res) => {
+    res.sendFile(path.join(__dirname, 'signin.html'));
+});
+app.get('/home', (req, res) => {
+    res.sendFile(path.join(__dirname, 'home.html'));
+});
 
 // Start the server
 const PORT = process.env.PORT || 3000;

@@ -17,22 +17,91 @@
     <hr>
     <div class="outer-wrapper">
         <div class="form-container">
-            <form>
+            <form id="signup-form">
                 <p class="step1">STEP <b>1</b> OF <b>4</b></p>
                 <h1>Create a password to start your membership</h1>
                 <h2>Just a few more steps and you're done! We hate paperwork, too.</h2>
-                <input type="email" placeholder="Email" required>
-                <input type="password" placeholder="Add a password" required>
-                <button type="submit" onclick="window.location.href='http://localhost:3000/welcome2'">Next</button>
+                <input id="email" type="email" placeholder="Email" required>
+                <span id="email-error" class="error-message"></span>
+                <input id="password" type="password" placeholder="Add a password" required>
+                <span id="password-error" class="error-message"></span>
+                <button id="next-button" type="submit">Next</button>
             </form>
         </div>
     </div>
     <br>
     <br>
     <div class="8"></div>
-    <script>
+    
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-analytics.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCOosBiGqPs9A-YTA2X08711sgnhVEkQr8",
+            authDomain: "netflix-clone-25585.firebaseapp.com",
+            projectId: "netflix-clone-25585",
+            storageBucket: "netflix-clone-25585.appspot.com",
+            messagingSenderId: "270587182367",
+            appId: "1:270587182367:web:2381fcdf4200bed4fa842a",
+            measurementId: "G-VEYH6G5L04"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const auth = getAuth(app);
+
+        // Handle sign-up form submission
+        document.getElementById('signup-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            let valid = true;
+
+            if (!email) {
+                document.getElementById('email-error').textContent = "Enter email";
+                valid = false;
+            } else {
+                document.getElementById('email-error').textContent = "";
+            }
+
+            if (!password) {
+                document.getElementById('password-error').textContent = "Enter password";
+                valid = false;
+            } else {
+                document.getElementById('password-error').textContent = "";
+            }
+
+            if (valid) {
+                // Sign up the user
+                createUserWithEmailAndPassword(auth, email, password)
+                    .then((userCredential) => {
+                        const user = userCredential.user;
+                        console.log('User created:', user.email);
+                        // Redirect to the next page
+                        window.location.href = 'http://localhost:3000/welcome2';
+                    })
+                    .catch((error) => {
+                        console.error('Error creating user:', error.message);
+                        // Show error message if needed
+                    });
+            }
+        });
+
+        // Handle sign out
         document.getElementById('signout-button').addEventListener('click', function() {
-            window.location.href = 'http://localhost:3000';
+            signOut(auth).then(() => {
+                console.log('User signed out');
+                window.location.href = 'http://localhost:3000';
+            }).catch((error) => {
+                console.error('Error signing out:', error.message);
+            });
         });
     </script>
 </body>
