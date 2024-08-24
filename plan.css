@@ -203,6 +203,7 @@ text-align: justify;
 }
 .footer a:hover {
     text-decoration: underline;
+    cursor: pointer;
 }
 .footer .contact {
     margin-bottom: 15px;
