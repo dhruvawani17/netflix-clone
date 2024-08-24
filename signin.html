@@ -166,7 +166,7 @@
                 <div class="text-center text-muted my-3">OR</div>
                 <button type="button" class="btn btn-secondary w-100 mb-3">Use a sign-in code</button>
                 <div class="text-center mb-3">
-                    <a href="#" class="text-muted">Forgot password?</a>
+                    <a href="#" id="forgot-password-link" class="text-muted">Forgot password?</a>
                 </div>
                 <div class="d-flex align-items-center justify-content-between mb-4">
                     <div class="form-check">
@@ -187,7 +187,7 @@
     <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
-        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+        import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyCOosBiGqPs9A-YTA2X08711sgnhVEkQr8",
@@ -239,6 +239,26 @@
                         document.getElementById('email-error').textContent = "Invalid email or password";
                     });
             }
+        });
+
+        // Handle forgot password
+        document.getElementById('forgot-password-link').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent default link behavior
+
+            const email = document.getElementById('email').value;
+            if (!email) {
+                document.getElementById('email-error').textContent = "Please enter your email to reset password";
+                return;
+            }
+
+            sendPasswordResetEmail(auth, email)
+                .then(() => {
+                    alert('Password reset email sent. Please check your inbox.');
+                })
+                .catch((error) => {
+                    console.error('Error sending password reset email:', error.message);
+                    document.getElementById('email-error').textContent = "Failed to send password reset email. Please try again.";
+                });
         });
     </script>
 </body>
