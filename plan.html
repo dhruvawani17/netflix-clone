@@ -11,99 +11,120 @@
     <nav>
         <span><img class="logo" src="assets/logo.svg" onclick="window.location.href='http://localhost:3000'" alt="Netflix Logo"></span>
         <div>
-            <button id="signout-button" class="btn btn-red-sm">Sign Out</button>
+            <button id="signout-button" class="btn btn-red-sm" data-en="Sign Out" data-hi="साइन आउट">Sign Out</button>
         </div>
     </nav>
     <hr>
     <div class="pricing-container">
         <div class="card mobile" onclick="selectCard(this)">
             <div class="header">
-                <h2>Mobile</h2>
-                <p>480p</p>
+                <h2 data-en="Mobile" data-hi="मोबाइल">Mobile</h2>
+                <p data-en="480p" data-hi="480p">480p</p>
             </div>
             <div class="details">
-                <p>Monthly price<br><strong>₹149</strong></p>
-                <p>Video and sound quality<br><strong>Fair</strong></p>
-                <p>Resolution<br><strong>480p</strong></p>
-                <p>Supported devices<br><strong>Mobile phone, tablet</strong></p>
-                <p>Devices your household can watch at the same time<br><strong>1</strong></p>
-                <p>Download devices<br><strong>1</strong></p>
+                <p data-en="Monthly price<br><strong>₹149</strong>" data-hi="मासिक मूल्य<br><strong>₹149</strong>">Monthly price<br><strong>₹149</strong></p>
+                <p data-en="Video and sound quality<br><strong>Fair</strong>" data-hi="वीडियो और ध्वनि की गुणवत्ता<br><strong>साधारण</strong>">Video and sound quality<br><strong>Fair</strong></p>
+                <p data-en="Resolution<br><strong>480p</strong>" data-hi="रिज़ॉल्यूशन<br><strong>480p</strong>">Resolution<br><strong>480p</strong></p>
+                <p data-en="Supported devices<br><strong>Mobile phone, tablet</strong>" data-hi="समर्थित उपकरण<br><strong>मोबाइल फोन, टैबलेट</strong>">Supported devices<br><strong>Mobile phone, tablet</strong></p>
+                <p data-en="Devices your household can watch at the same time<br><strong>1</strong>" data-hi="उपकरण जो आपके घरेलू देख सकते हैं<br><strong>1</strong>">Devices your household can watch at the same time<br><strong>1</strong></p>
+                <p data-en="Download devices<br><strong>1</strong>" data-hi="डाउनलोड उपकरण<br><strong>1</strong>">Download devices<br><strong>1</strong></p>
             </div>
         </div>
         <div class="card basic" onclick="selectCard(this)">
             <div class="header">
-                <h2>Basic</h2>
-                <p>720p</p>
-                <div class="most-popular">Most Popular</div>
+                <h2 data-en="Basic" data-hi="बेसिक">Basic</h2>
+                <p data-en="720p" data-hi="720p">720p</p>
+                <div class="most-popular" data-en="Most Popular" data-hi="सर्वाधिक लोकप्रिय">Most Popular</div>
             </div>
             <div class="details">
-                <p>Monthly price<br><strong>₹199</strong></p>
-                <p>Video and sound quality<br><strong>Good</strong></p>
-                <p>Resolution<br><strong>720p (HD)</strong></p>
-                <p>Supported devices<br><strong>TV, computer, mobile phone, tablet</strong></p>
-                <p>Devices your household can watch at the same time<br><strong>1</strong></p>
-                <p>Download devices<br><strong>1</strong></p>
+                <p data-en="Monthly price<br><strong>₹199</strong>" data-hi="मासिक मूल्य<br><strong>₹199</strong>">Monthly price<br><strong>₹199</strong></p>
+                <p data-en="Video and sound quality<br><strong>Good</strong>" data-hi="वीडियो और ध्वनि की गुणवत्ता<br><strong>अच्छी</strong>">Video and sound quality<br><strong>Good</strong></p>
+                <p data-en="Resolution<br><strong>720p (HD)</strong>" data-hi="रिज़ॉल्यूशन<br><strong>720p (HD)</strong>">Resolution<br><strong>720p (HD)</strong></p>
+                <p data-en="Supported devices<br><strong>TV, computer, mobile phone, tablet</strong>" data-hi="समर्थित उपकरण<br><strong>टीवी, कंप्यूटर, मोबाइल फोन, टैबलेट</strong>">Supported devices<br><strong>TV, computer, mobile phone, tablet</strong></p>
+                <p data-en="Devices your household can watch at the same time<br><strong>1</strong>" data-hi="उपकरण जो आपके घरेलू देख सकते हैं<br><strong>1</strong>">Devices your household can watch at the same time<br><strong>1</strong></p>
+                <p data-en="Download devices<br><strong>1</strong>" data-hi="डाउनलोड उपकरण<br><strong>1</strong>">Download devices<br><strong>1</strong></p>
             </div>
         </div>
         <div class="card standard" onclick="selectCard(this)">
             <div class="header">
-                <h2>Standard</h2>
-                <p>1080p</p>
+                <h2 data-en="Standard" data-hi="स्टैंडर्ड">Standard</h2>
+                <p data-en="1080p" data-hi="1080p">1080p</p>
             </div>
             <div class="details">
-                <p>Monthly price<br><strong>₹499</strong></p>
-                <p>Video and sound quality<br><strong>Great</strong></p>
-                <p>Resolution<br><strong>1080p (Full HD)</strong></p>
-                <p>Supported devices<br><strong>TV, computer, mobile phone, tablet</strong></p>
-                <p>Devices your household can watch at the same time<br><strong>2</strong></p>
-                <p>Download devices<br><strong>2</strong></p>
+                <p data-en="Monthly price<br><strong>₹499</strong>" data-hi="मासिक मूल्य<br><strong>₹499</strong>">Monthly price<br><strong>₹499</strong></p>
+                <p data-en="Video and sound quality<br><strong>Great</strong>" data-hi="वीडियो और ध्वनि की गुणवत्ता<br><strong>उत्तम</strong>">Video and sound quality<br><strong>Great</strong></p>
+                <p data-en="Resolution<br><strong>1080p (Full HD)</strong>" data-hi="रिज़ॉल्यूशन<br><strong>1080p (फुल एचडी)</strong>">Resolution<br><strong>1080p (Full HD)</strong></p>
+                <p data-en="Supported devices<br><strong>TV, computer, mobile phone, tablet</strong>" data-hi="समर्थित उपकरण<br><strong>टीवी, कंप्यूटर, मोबाइल फोन, टैबलेट</strong>">Supported devices<br><strong>TV, computer, mobile phone, tablet</strong></p>
+                <p data-en="Devices your household can watch at the same time<br><strong>2</strong>" data-hi="उपकरण जो आपके घरेलू देख सकते हैं<br><strong>2</strong>">Devices your household can watch at the same time<br><strong>2</strong></p>
+                <p data-en="Download devices<br><strong>2</strong>" data-hi="डाउनलोड उपकरण<br><strong>2</strong>">Download devices<br><strong>2</strong></p>
             </div>
         </div>
         <div class="card premium" onclick="selectCard(this)">
             <div class="header">
-                <h2>Premium</h2>
-                <p>4K + HDR</p>
+                <h2 data-en="Premium" data-hi="प्रीमियम">Premium</h2>
+                <p data-en="4K + HDR" data-hi="4K + HDR">4K + HDR</p>
             </div>
             <div class="details">
-                <p>Monthly price<br><strong>₹649</strong></p>
-                <p>Video and sound quality<br><strong>Best</strong></p>
-                <p>Resolution<br><strong>4K (Ultra HD) + HDR</strong></p>
-                <p>Spatial audio (immersive sound)<br><strong>Included</strong></p>
-                <p>Supported devices<br><strong>TV, computer, mobile phone, tablet</strong></p>
-                <p>Devices your household can watch at the same time<br><strong>4</strong></p>
-                <p>Download devices<br><strong>6</strong></p>
+                <p data-en="Monthly price<br><strong>₹649</strong>" data-hi="मासिक मूल्य<br><strong>₹649</strong>">Monthly price<br><strong>₹649</strong></p>
+                <p data-en="Video and sound quality<br><strong>Best</strong>" data-hi="वीडियो और ध्वनि की गुणवत्ता<br><strong>सर्वश्रेष्ठ</strong>">Video and sound quality<br><strong>Best</strong></p>
+                <p data-en="Resolution<br><strong>4K (Ultra HD) + HDR</strong>" data-hi="रिज़ॉल्यूशन<br><strong>4K (अल्ट्रा एचडी) + HDR</strong>">Resolution<br><strong>4K (Ultra HD) + HDR</strong></p>
+                <p data-en="Spatial audio (immersive sound)<br><strong>Included</strong>" data-hi="स्पेशियल ऑडियो (इमर्सिव साउंड)<br><strong>शामिल</strong>">Spatial audio (immersive sound)<br><strong>Included</strong></p>
+                <p data-en="Supported devices<br><strong>TV, computer, mobile phone, tablet</strong>" data-hi="समर्थित उपकरण<br><strong>टीवी, कंप्यूटर, मोबाइल फोन, टैबलेट</strong>">Supported devices<br><strong>TV, computer, mobile phone, tablet</strong></p>
+                <p data-en="Devices your household can watch at the same time<br><strong>4</strong>" data-hi="उपकरण जो आपके घरेलू देख सकते हैं<br><strong>4</strong>">Devices your household can watch at the same time<br><strong>4</strong></p>
+                <p data-en="Download devices<br><strong>6</strong>" data-hi="डाउनलोड उपकरण<br><strong>6</strong>">Download devices<br><strong>6</strong></p>
             </div>
         </div>
     </div>
-<div class="info">HD (720p), Full HD (1080p), Ultra HD (4K) and HDR availability subject to your internet service and device capabilities. Not all content is available in all resolutions. See our Terms of Use for more details.
-    Only people who live with you may use your account. Watch on 4 different devices at the same time with Premium, 2 with Standard, and 1 with Basic and Mobile.</div>
+    <div class="info" data-en="HD (720p), Full HD (1080p), Ultra HD (4K) and HDR availability subject to your internet service and device capabilities. Not all content is available in all resolutions. See our Terms of Use for more details. Only people who live with you may use your account. Watch on 4 different devices at the same time with Premium, 2 with Standard, and 1 with Basic and Mobile." data-hi="एचडी (720p), फुल एचडी (1080p), अल्ट्रा एचडी (4K) और एचडीआर उपलब्धता आपके इंटरनेट सेवा और डिवाइस क्षमताओं पर निर्भर है। सभी सामग्री सभी रिज़ॉल्यूशन में उपलब्ध नहीं है। अधिक विवरण के लिए हमारी उपयोग की शर्तें देखें। केवल वही लोग जो आपके साथ रहते हैं आपके खाते का उपयोग कर सकते हैं। प्रीमियम के साथ एक ही समय में 4 अलग-अलग उपकरणों पर, स्टैंडर्ड के साथ 2 उपकरणों पर, और बेसिक और मोबाइल के साथ 1 उपकरण पर देखें।">HD (720p), Full HD (1080p), Ultra HD (4K) and HDR availability subject to your internet service and device capabilities. Not all content is available in all resolutions. See our Terms of Use for more details. Only people who live with you may use your account. Watch on 4 different devices at the same time with Premium, 2 with Standard, and 1 with Basic and Mobile.</div>
     <div class="btn" id="Next">
-        <button class="red" onclick="window.location.href='http://localhost:3000/payment'">Next</button>
-
+        <button class="red" onclick="window.location.href='http://localhost:3000/payment'" data-en="Next" data-hi="अगला">Next</button>
     </div>
     <div class="footer">
         <div class="footer-content">
-            <div class="contact">Questions? Call 000-800-919-1694</div>
+            <div class="contact" data-en="Questions? Call 000-800-919-1694" data-hi="प्रश्न हैं? कॉल करें 000-800-919-1694">Questions? Call 000-800-919-1694</div>
             <div class="link-group">
-                <a onclick="window.location.href='http://localhost:3000/faq'">FAQ</a>
-                <a href="#">Cookie Preferences</a>
-                <a href="#">Help Center</a>
-                <a href="#">Corporate Information</a>
-                <a href="#">Terms of Use</a>
-                <a href="#">Privacy</a>
+                <a onclick="window.location.href='http://localhost:3000/faq'" data-en="FAQ" data-hi="सामान्य प्रश्न">FAQ</a>
+                <a href="#" data-en="Cookie Preferences" data-hi="कुकी प्राथमिकताएं">Cookie Preferences</a>
+                <a href="#" data-en="Help Center" data-hi="सहायता केंद्र">Help Center</a>
+                <a href="#" data-en="Corporate Information" data-hi="कॉर्पोरेट जानकारी">Corporate Information</a>
+                <a href="#" data-en="Terms of Use" data-hi="उपयोग की शर्तें">Terms of Use</a>
+                <a href="#" data-en="Privacy" data-hi="गोपनीयता">Privacy</a>
             </div>
             <div class="language-selector">
                 <button id="languageButton">
-                    <img src="assets/reshot-icon-globe-LU7D8MFSTQ.svg" alt="Globe" width="15"> English
+                    <img src="assets/reshot-icon-globe-LU7D8MFSTQ.svg" alt="Globe" width="15"> <span data-en="English" data-hi="अंग्रेज़ी">English</span>
                 </button>
                 <div class="language-options" id="languageOptions">
-                    <a href="#">English</a>
-                    <a href="#">Hindi</a>
+                    <a href="#" data-language="en">English</a>
+                    <a href="#" data-language="hi">Hindi</a>
                 </div>
             </div>
         </div>
     </div>
     <script>
+        // Language toggle
+        document.querySelector('#languageButton').addEventListener('click', function() {
+            const options = document.querySelector('#languageOptions');
+            options.style.display = options.style.display === 'block' ? 'none' : 'block';
+        });
+
+        document.querySelectorAll('#languageOptions a').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const selectedLanguage = this.getAttribute('data-language');
+                changeLanguage(selectedLanguage);
+                const languageButton = document.querySelector('#languageButton span');
+                languageButton.textContent = this.textContent;
+                document.querySelector('#languageOptions').style.display = 'none';
+            });
+        });
+
+        function changeLanguage(language) {
+            document.querySelectorAll('[data-en]').forEach(function(element) {
+                element.innerHTML = element.getAttribute('data-' + language);
+            });
+        }
+
         document.getElementById('signout-button').addEventListener('click', function() {
             window.location.href = 'http://localhost:3000';
         });
@@ -124,10 +145,6 @@
             tick.innerHTML = '&#10003;'; // Checkmark symbol
             card.querySelector('.header').appendChild(tick);
         }
-
-</script>
-
-
+    </script>
 </body>
-
 </html>

@@ -224,6 +224,9 @@ text-align: justify;
     background-color: #fff;
     display: flex;
     align-items: center;
+margin-bottom: 50px;
+font-size: 15px;
+width: 100px;
 }
 .footer .language-selector button:hover {
     background-color: #f0f0f0;
@@ -251,6 +254,7 @@ text-align: justify;
 }
 .footer .language-options a:hover {
     background-color: #f0f0f0;
+
 }
 .contact{
     display: flex;
