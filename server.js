@@ -60,6 +60,24 @@ app.get('/plans', (req, res) => {
 app.get('/payment', (req, res) => {
     res.sendFile(path.join(__dirname, 'payment.html'));
 });
+app.get('/faq', (req, res) => {
+    res.sendFile(path.join(__dirname, 'faq.html'));
+});
+app.get('/cookie', (req, res) => {
+    res.sendFile(path.join(__dirname, 'cookie.html'));
+});
+app.get('/help-center', (req, res) => {
+    res.sendFile(path.join(__dirname, 'helpcenter.html'));
+});
+app.get('/corporate-information', (req, res) => {
+    res.sendFile(path.join(__dirname, 'corporateinfo.html'));
+});
+app.get('/terms-use', (req, res) => {
+    res.sendFile(path.join(__dirname, 'termsuse.html'));
+});
+app.get('/privacy', (req, res) => {
+    res.sendFile(path.join(__dirname, 'privacy.html'));
+});
 
 // Start the server
 const PORT = process.env.PORT || 3000;
