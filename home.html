@@ -3,9 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Nextflix</title>
+    <link rel="stylesheet" href="home.css">
 </head>
 <body>
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="logo">
+            <img src="assets/logo.svg" alt="Nextflix Logo" width="167" height="45">
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">TV Shows</a></li>
+                <li><a href="#">Movies</a></li>
+                <li><a href="#">New & Popular</a></li>
+                <li><a href="#">My List</a></li>
+            </ul>
+        </nav>
+        <div class="profile-icons">
+            <i class="fa fa-search"></i>
+            <i class="fa fa-bell"></i>
+            <i class="fa fa-user"></i>
+        </div>
+    </header>
+
+    <!-- Featured Movie Section -->
+    <section class="featured-movie">
+        <div class="featured-movie-poster">
+            <img id="featured-poster" src="" alt="Featured Movie">
+            <div class="featured-movie-info">
+                <h2 id="featured-title">The Union</h2>
+                <p id="featured-overview">Movie overview goes here.</p>
+                <button class="play-btn">▶ Play</button>
+                <button class="more-info-btn">ℹ More Info</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Movie Slider Sections -->
+    <section class="movie-section" id="trending-now">
+        <h2>Trending Now</h2>
+        <div class="movie-slider" id="trending-slider">
+            <!-- Movies will be loaded here dynamically -->
+        </div>
+    </section>
+
+    <section class="movie-section" id="popular-on-nextflix">
+        <h2>Popular on Nextflix</h2>
+        <div class="movie-slider" id="popular-slider">
+            <!-- Movies will be loaded here dynamically -->
+        </div>
+    </section>
+
+    <section class="movie-section" id="horror-movies">
+        <h2>Horror Movies</h2>
+        <div class="movie-slider" id="horror-slider">
+            <!-- Movies will be loaded here dynamically -->
+        </div>
+    </section>
     
+
+    <!-- Trailer Container -->
+    <div id="trailer-container"></div>
+    <script defer src="home.js"></script>
 </body>
 </html>
