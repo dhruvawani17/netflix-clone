@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Martel+Sans:wght@600&family=Poppins:wght@300;400;700&display=swap');
 /* General Reset */
 * {
     margin: 0;
@@ -6,7 +7,7 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: sans-serif;
     background-color: #141414;
     color: #ffffff;
 }
@@ -17,10 +18,12 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: transparent
-    position: static; /* Updated to not be fixed */
+    background-color: transparent;
+    position: fixed; /* Navbar is now fixed */
+    top: 0;
     width: 100%;
     z-index: 1000;
+    transition: background-color 0.5s;
 }
 
 .nav-links {
@@ -44,44 +47,75 @@ body {
     cursor: pointer;
 }
 
+/* Change Navbar Background on Scroll */
+.navbar.scrolled {
+    background-color: black;
+}
+
 /* Featured Movie Styling */
 .featured-movie {
     position: relative;
     background-color: #141414;
-    height: 500px;
+    height: auto; /* Allow height to adjust based on content */
+    min-height: 500px; /* Minimum height for the section */
+    overflow: hidden; /* Ensure no part of the image overflows */
+    display: flex; /* Use flexbox for alignment */
+    align-items: flex-end; /* Align items to the bottom */
+}
+
+.featured-movie-poster {
+    width: 100%;
+    height: auto;
+    position: relative;
 }
 
 .featured-movie-poster img {
     width: 100%;
-    height: 500px;
-    object-fit: cover;
-    margin: 0;
-    padding: 0;
+    height: auto;
+    object-fit: cover; /* Cover the area while preserving aspect ratio */
+    display: block;
 }
 
 .featured-movie-info {
     position: absolute;
-    bottom: 50px;
+    bottom: 50px; /* Adjust based on button placement */
     left: 50px;
     color: #fff;
+    z-index: 1; /* Ensure the text appears on top of the image */
 }
+
 
 .featured-movie-info h2 {
     font-size: 3rem;
 }
 
-.play-btn, .more-info-btn {
+.play-btn {
     margin-top: 10px;
     padding: 10px 20px;
-    background-color: #e50914;
+    background-color: white;
+    border: none;
+    color: black;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.more-info-btn {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: rgba(128, 128, 128, 0.46);
     border: none;
     color: #fff;
     font-size: 1.2rem;
     cursor: pointer;
 }
 
-.play-btn:hover, .more-info-btn:hover {
-    background-color: #f40612;
+.play-btn:hover {
+    background-color: white;
+    box-shadow: #141414;
+}
+
+.more-info-btn:hover {
+    background-color: rgba(128, 128, 128, 0.652);
 }
 
 /* Movie Slider Styling */
@@ -90,10 +124,14 @@ body {
     padding: 0 20px;
 }
 
+.movie-slider-container {
+    position: relative;
+}
+
 .movie-slider {
     display: flex;
     gap: 10px;
-    overflow-x: hidden;
+    overflow-x: scroll;
     padding: 20px 0;
     scroll-behavior: smooth;
 }
@@ -118,8 +156,29 @@ body {
     z-index: 100;
 }
 
+.slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+    background:transparent;
+    padding: 5px 10px;
+    border-radius: 50%;
+    z-index: 1000;
+}
+
+.slider-arrow.left {
+    left: 0;
+}
+
+.slider-arrow.right {
+    right: 0;
+}
+
 /* Trailer Card Styling */
-.movie-trailer {
+.movie-trailer-card {
     position: absolute;
     top: -100%; /* Above the image */
     left: 0;
@@ -131,7 +190,7 @@ body {
     justify-content: center;
 }
 
-.movie-trailer iframe {
+.movie-trailer-card iframe {
     width: 100%;
     height: 100%;
     border: none;
@@ -145,17 +204,4 @@ body {
 .movie-slider {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
-}
-
-/* Trailer Container */
-#trailer-container {
-    margin: 20px auto;
-    width: 80%;
-    height: 315px;
-    display: none;
-}
-
-#trailer-container iframe {
-    width: 100%;
-    height: 100%;
 }
