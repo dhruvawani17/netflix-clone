@@ -8,70 +8,76 @@
 
     <style>
         body {
-    font-family: Arial, sans-serif;
-    background-color: #fffefe;
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-}
+            font-family: Arial, sans-serif;
+            background-color: #fffefe;
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+        }
 
-nav {
-display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: rgba(255, 255, 255, 0);
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: rgba(255, 255, 255, 0);
+            position: static;
+            top: 0;
+            z-index: 10;
+        }
 
-    position: static;
-    top: 0;
-    z-index: 10;
-}
+        .logo {
+            width: 167px;
+            height: 45px;
+            cursor: pointer;
+        }
 
-.logo {
-    width: 167px;
-    height: 45px;
-    cursor: pointer;
-}
+        .btn-red-sm {
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            background-color: transparent;
+        }
 
-.btn-red-sm {
-    color: black;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 16px;
-    border-radius: 5px;
-    transition: all 0.3s ease;
-    font-weight: 600;
-    background-color: transparent;
-}
+        .btn-red-sm:hover {
+            text-decoration: underline;
+        }
 
-.btn-red-sm:hover {
-    text-decoration: underline;
-}
         .container {
             margin-top: 50px;
         }
+
         .container p {
             margin: 8px 0;
             color: #737373;
         }
+
         .step {
             color: #666;
         }
+
         .choose-text {
             margin: 16px 0;
             font-size: 24px;
             font-weight: bold;
         }
+
         .card img {
             vertical-align: middle;
         }
+
         .card-options {
             display: inline-block;
             margin: 20px 0;
             width: 360px;
             text-align: left;
         }
+
         .card-option {
             display: flex;
             justify-content: space-between;
@@ -80,56 +86,71 @@ display: flex;
             margin-bottom: 20px;
             border: 1px solid #e6e6e6;
             border-radius: 4px;
-         
+            background-color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
         }
+
+        .card-option:hover {
+            background-color: #f0f0f0;
+        }
+
         .card-option img {
             margin-left: 10px;
         }
+
         .card-option .arrow {
             font-size: 18px;
         }
+
         footer {
             text-align: left;
             padding: 20px;
             background-color: #f8f8f8;
         }
+
         footer .footer-links {
             display: flex;
             justify-content: space-between;
         }
+
         footer a {
             color: #737373;
             text-decoration: none;
             font-size: 12px;
         }
+
         footer a:hover {
             text-decoration: underline;
         }
+
         .language-selector {
             float: right;
             font-size: 12px;
         }
-        .main{
+
+        .main {
             display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
         }
-        .lock{
+
+        .lock {
             margin: auto;
         }
-        .lock1{
+
+        .lock1 {
             display: flex;
             margin: auto;
             padding-top: 50px;
-
         }
     </style>
 </head>
 <body>
     <header>
         <nav>
-            <span><img class="logo" src="assets/logo.svg"  onclick="window.location.href='http://localhost:3000'" alt="Netflix Logo"></span>
+            <span><img class="logo" src="assets/logo.svg" onclick="window.location.href='http://localhost:3000'" alt="Netflix Logo"></span>
             <div>
                 <button id="signout-button" class="btn btn-red-sm">Sign Out</button>
             </div>
@@ -140,34 +161,33 @@ display: flex;
         <img src="https://assets.nflxext.com/ffe/siteui/acquisition/simplicity/Lock.png" alt="" class="lock1">
     </div>
     <section class="main">
-    <div class="container">
-        <div class="step">STEP 4 OF 4</div>
-        <div class="choose-text">Choose how to pay</div>
-        <p>Your payment is encrypted and you can change your payment method at anytime.</p>
-        <p><strong>Secure for peace of mind.<br>Cancel easily online.</strong></p>
-        <div class="card-options">
-            <div class="card-option">
-                <div>
-                    Credit or Debit Card
-                    <img src="assets/visa-svgrepo-com.svg" height="20">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" height="20">
-                    <img src="assets/Diners_Club_logo.svg" height="20">
-                </div>
-                <div class="arrow">&gt;</div>
-            </div>
-            <div class="card-option">
-                <div>
-                    UPI AutoPay
-                    <img src="assets/bhim-upi-icon.svg" height="20">
-                    <img src="assets/Paytm_Logo_(standalone).svg" height="20">
-                    <img src="assets/PhonePe-Logo.wine.svg" height="20">
-                    <img src="assets/icons8-google-pay-new.svg" height="20">
-                </div>
-                <div class="arrow">&gt;</div>
+        <div class="container">
+            <div class="step">STEP 4 OF 4</div>
+            <div class="choose-text">Choose how to pay</div>
+            <p>Your payment is encrypted and you can change your payment method at any time.</p>
+            <p><strong>Secure for peace of mind.<br>Cancel easily online.</strong></p>
+            <div class="card-options">
+                <button class="card-option" onclick="window.location.href='http://localhost:3000/home'">
+                    <div>
+                        Credit or Debit Card
+                        <img src="assets/visa-svgrepo-com.svg" height="20">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" height="20">
+                        <img src="assets/Diners_Club_logo.svg" height="20">
+                    </div>
+                    <div class="arrow">&gt;</div>
+                </button>
+                <button class="card-option" onclick="window.location.href='http://localhost:3000/home'">
+                    <div>
+                        UPI AutoPay
+                        <img src="assets/bhim-upi-icon.svg" height="20">
+                        <img src="assets/Paytm_Logo_(standalone).svg" height="20">
+                        <img src="assets/PhonePe-Logo.wine.svg" height="20">
+                        <img src="assets/icons8-google-pay-new.svg" height="20">
+                    </div>
+                    <div class="arrow">&gt;</div>
+                </button>
             </div>
         </div>
-    </div>
-</section>
-
+    </section>
 </body>
 </html>

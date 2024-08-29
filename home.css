@@ -18,7 +18,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: transparent;
+    background-color: rgba(0, 0, 0, 0.03);
     position: fixed; /* Navbar is now fixed */
     top: 0;
     width: 100%;
@@ -102,7 +102,7 @@ body {
 .more-info-btn {
     margin-top: 10px;
     padding: 10px 20px;
-    background-color: rgba(128, 128, 128, 0.46);
+    background-color: rgba(234, 226, 226, 0.234);
     border: none;
     color: #fff;
     font-size: 1.2rem;
@@ -115,7 +115,7 @@ body {
 }
 
 .more-info-btn:hover {
-    background-color: rgba(128, 128, 128, 0.652);
+    background-color: rgba(128, 128, 128, 0.238);
 }
 
 /* Movie Slider Styling */
