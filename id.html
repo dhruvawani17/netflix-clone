@@ -3,36 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NETFLIX</title>
+    <title data-en="NETFLIX" data-hi="नेटफ्लिक्स">NETFLIX</title>
     <link rel="stylesheet" href="id.css">
     <link rel="icon" type="image/x-icon" href="assets/netflix-1-logo-svgrepo-com.svg">
+    <style>
+        .language-options {
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <nav>
         <span><img class="logo" src="assets/logo.svg" onclick="window.location.href='http://localhost:3000'" alt="Netflix Logo"></span>
         <div>
-            <button id="signout-button" class="btn btn-red-sm">Sign Out</button>
+            <button id="signout-button" class="btn btn-red-sm" data-en="Sign Out" data-hi="साइन आउट">Sign Out</button>
         </div>
     </nav>
     <hr>
     <div class="outer-wrapper">
         <div class="form-container">
             <form id="signup-form">
-                <p class="step1">STEP <b>1</b> OF <b>4</b></p>
-                <h1>Create a password to start your membership</h1>
-                <h2>Just a few more steps and you're done! We hate paperwork, too.</h2>
-                <input id="email" type="email" placeholder="Email" required>
-                <span id="email-error" class="error-message"></span>
-                <input id="password" type="password" placeholder="Add a password" required>
-                <span id="password-error" class="error-message"></span>
-                <button id="next-button" type="submit">Next</button>
+                <p class="step1" data-en="STEP 1 OF 4 " data-hi="चरण 1 में 4 ">STEP <b>1</b> OF <b>4</b></p>
+                <h1 data-en="Create a password to start your membership" data-hi="अपनी सदस्यता शुरू करने के लिए एक पासवर्ड बनाएं">Create a password to start your membership</h1>
+                <h2 data-en="Just a few more steps and you're done! We hate paperwork, too." data-hi="बस कुछ और कदम और आप तैयार हैं! हमें भी पेपरवर्क से नफरत है।">Just a few more steps and you're done! We hate paperwork, too.</h2>
+                <input id="email" type="email" placeholder="Email" required data-en="Email" data-hi="ईमेल">
+                <span id="email-error" class="error-message" data-en="Enter email" data-hi="ईमेल दर्ज करें"></span>
+                <input id="password" type="password" placeholder="Add a password" required data-en="Add a password" data-hi="एक पासवर्ड जोड़ें">
+                <span id="password-error" class="error-message" data-en="Enter password" data-hi="पासवर्ड दर्ज करें"></span>
+                <button id="next-button" type="submit" data-en="Next" data-hi="अगला">Next</button>
             </form>
         </div>
     </div>
     <br>
     <br>
     <div class="8"></div>
-    
+    <div class="footer">
+        <div class="footer-content">
+            <div class="contact" data-en="Questions? Call 000-800-919-1694" data-hi="प्रश्न हैं? कॉल करें 000-800-919-1694">Questions? Call 000-800-919-1694</div>
+            <div class="link-group">
+                <a onclick="window.location.href='http://localhost:3000/faq'" data-en="FAQ" data-hi="सामान्य प्रश्न">FAQ</a>
+                <a onclick="window.location.href='http://localhost:3000/Cookie'" data-en="Cookie Preferences" data-hi="कुकी प्राथमिकताएं">Cookie Preferences</a>
+                <a onclick="window.location.href='http://localhost:3000/help-center'" data-en="Help Center" data-hi="सहायता केंद्र">Help Center</a>
+                <a onclick="window.location.href='http://localhost:3000/corporate-information'" data-en="Corporate Information" data-hi="कॉर्पोरेट जानकारी">Corporate Information</a>
+                <a onclick="window.location.href='http://localhost:3000/terms-use'" data-en="Terms of Use" data-hi="उपयोग की शर्तें">Terms of Use</a>
+                <a onclick="window.location.href='http://localhost:3000/privacy'" data-en="Privacy" data-hi="गोपनीयता">Privacy</a>
+            </div>
+            <div class="language-selector">
+                <button id="languageButton" data-en="English" data-hi="अंग्रेज़ी">
+                    <img src="assets/reshot-icon-globe-LU7D8MFSTQ.svg" alt="Globe" width="15"> <span id="currentLanguage">English</span>
+                </button>
+                <div class="language-options" id="languageOptions">
+                    <a data-language="en" data-en="English" data-hi="अंग्रेज़ी">English</a>
+                    <a data-language="hi" data-en="Hindi" data-hi="हिन्दी">Hindi</a>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
     <script type="module">
         // Import the functions you need from the SDKs you need
@@ -55,6 +81,9 @@
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
         const auth = getAuth(app);
+
+        // Retrieve the email from local storage and set it in the email input field
+        document.getElementById('email').value = localStorage.getItem('userEmail') || '';
 
         // Handle sign-up form submission
         document.getElementById('signup-form').addEventListener('submit', function(event) {
@@ -98,11 +127,41 @@
         document.getElementById('signout-button').addEventListener('click', function() {
             signOut(auth).then(() => {
                 console.log('User signed out');
+                localStorage.removeItem('userEmail'); // Clear email from local storage
                 window.location.href = 'http://localhost:3000';
             }).catch((error) => {
                 console.error('Error signing out:', error.message);
             });
         });
+
+        // Language switching functionality
+        const languageButton = document.getElementById('languageButton');
+        const languageOptions = document.getElementById('languageOptions');
+        const currentLanguage = document.getElementById('currentLanguage');
+        const elementsToTranslate = document.querySelectorAll('[data-en]');
+
+        languageButton.addEventListener('click', () => {
+            languageOptions.style.display = languageOptions.style.display === 'none' ? 'block' : 'none';
+        });
+
+        languageOptions.addEventListener('click', (event) => {
+            if (event.target.dataset.language) {
+                const lang = event.target.dataset.language;
+                elementsToTranslate.forEach(el => {
+                    el.textContent = el.getAttribute(`data-${lang}`);
+                });
+                currentLanguage.textContent = event.target.getAttribute(`data-${lang}`);
+                localStorage.setItem('language', lang); // Save language preference
+                languageOptions.style.display = 'none'; // Hide options after selection
+            }
+        });
+
+        // Set initial language based on local storage
+        const savedLanguage = localStorage.getItem('language') || 'en';
+        elementsToTranslate.forEach(el => {
+            el.textContent = el.getAttribute(`data-${savedLanguage}`);
+        });
+        currentLanguage.textContent = document.querySelector(`[data-language="${savedLanguage}"]`).textContent;
     </script>
 </body>
 </html>
