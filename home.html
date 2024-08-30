@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,8 @@
     <link rel="stylesheet" href="home.css">
     <link rel="icon" type="image/x-icon" href="assets/netflix-1-logo-svgrepo-com.svg">
 </head>
+
 <body>
-    <!-- Navbar -->
     <header class="navbar" id="navbar">
         <div class="logo">
             <img src="assets/logo.svg" alt="Nextflix Logo" width="167" height="45">
@@ -29,7 +30,6 @@
         </div>
     </header>
 
-    <!-- Featured Movie Section -->
     <section class="featured-movie">
         <div class="featured-movie-poster">
             <img id="featured-poster" src="" alt="Featured Movie">
@@ -41,15 +41,12 @@
             </div>
         </div>
     </section>
-    
-    <!-- Movie Slider Sections -->
+
     <section class="movie-section" id="trending-now">
         <h2>Trending Now</h2>
         <div class="movie-slider-container">
             <span class="slider-arrow left" onclick="scrollSlider('trending-slider', 'left')">&lt;</span>
-            <div class="movie-slider" id="trending-slider">
-                <!-- Movies will be loaded here dynamically -->
-            </div>
+            <div class="movie-slider" id="trending-slider"></div>
             <span class="slider-arrow right" onclick="scrollSlider('trending-slider', 'right')">&gt;</span>
         </div>
     </section>
@@ -58,9 +55,7 @@
         <h2>Popular on Nextflix</h2>
         <div class="movie-slider-container">
             <span class="slider-arrow left" onclick="scrollSlider('popular-slider', 'left')">&lt;</span>
-            <div class="movie-slider" id="popular-slider">
-                <!-- Movies will be loaded here dynamically -->
-            </div>
+            <div class="movie-slider" id="popular-slider"></div>
             <span class="slider-arrow right" onclick="scrollSlider('popular-slider', 'right')">&gt;</span>
         </div>
     </section>
@@ -69,21 +64,16 @@
         <h2>Horror Movies</h2>
         <div class="movie-slider-container">
             <span class="slider-arrow left" onclick="scrollSlider('horror-slider', 'left')">&lt;</span>
-            <div class="movie-slider" id="horror-slider">
-                <!-- Movies will be loaded here dynamically -->
-            </div>
+            <div class="movie-slider" id="horror-slider"></div>
             <span class="slider-arrow right" onclick="scrollSlider('horror-slider', 'right')">&gt;</span>
         </div>
     </section>
 
-    <!-- Additional Movie Sections -->
     <section class="movie-section" id="drama-movies">
         <h2>Drama Movies</h2>
         <div class="movie-slider-container">
             <span class="slider-arrow left" onclick="scrollSlider('drama-slider', 'left')">&lt;</span>
-            <div class="movie-slider" id="drama-slider">
-                <!-- Movies will be loaded here dynamically -->
-            </div>
+            <div class="movie-slider" id="drama-slider"></div>
             <span class="slider-arrow right" onclick="scrollSlider('drama-slider', 'right')">&gt;</span>
         </div>
     </section>
@@ -92,17 +82,24 @@
         <h2>Sci-Fi Movies</h2>
         <div class="movie-slider-container">
             <span class="slider-arrow left" onclick="scrollSlider('sci-fi-slider', 'left')">&lt;</span>
-            <div class="movie-slider" id="sci-fi-slider">
-                <!-- Movies will be loaded here dynamically -->
-            </div>
+            <div class="movie-slider" id="sci-fi-slider"></div>
             <span class="slider-arrow right" onclick="scrollSlider('sci-fi-slider', 'right')">&gt;</span>
         </div>
     </section>
 
-    <!-- Trailer Container -->
-    <div id="trailer-container" class="trailer-container">
-        <!-- Trailer content will be injected here -->
-    </div>
+    <section class="movie-section" id="top-ten-movies">
+        <h2>Top 10 Movies</h2>
+        <div class="movie-slider-container">
+            <span class="slider-arrow left" onclick="scrollSlider('top-ten-slider', 'left')">&lt;</span>
+            <div class="movie-slider" id="top-ten-slider">
+                <!-- Movies will be dynamically populated here -->
+            </div>
+            <span class="slider-arrow right" onclick="scrollSlider('top-ten-slider', 'right')">&gt;</span>
+        </div>
+    </section>
+    
+
+    <div id="trailer-container" class="trailer-container"></div>
 
     <script defer src="home.js"></script>
 </body>

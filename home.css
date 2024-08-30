@@ -205,3 +205,174 @@ body {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
 }
+
+.movie-item {
+    position: relative;
+    display: inline-block;
+    transition: transform 0.3s ease-in-out;
+}
+
+.movie-item img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.movie-item:hover {
+    transform: scale(1.2);
+    z-index: 2;
+}
+
+/*... (rest of the CSS code remains the same) */  
+  
+/* Add hover effect to movie cards */  
+.movie-item {  
+    position: relative;  
+    display: inline-block;  
+    transition: transform 0.3s ease-in-out;  
+  }  
+    
+  .movie-item img {  
+    display: block;  
+    width: 100%;  
+    height: auto;  
+    border-radius: 5px;  
+  }  
+    
+  .movie-item:hover {  
+    transform: scale(1.2);  
+    z-index: 2;  
+  }  
+    
+  .movie-details-card {  
+    position: absolute;  
+    bottom: 0;  
+    left: 0;  
+    right: 0;  
+    background-color: rgba(0, 0, 0, 0.8);  
+    color: white;  
+    padding: 10px;  
+    border-radius: 0 0 5px 5px;  
+    transition: opacity 0.3s ease-in-out;  
+    opacity: 1;  
+    pointer-events: none;  
+    z-index: 3;  
+  }  
+    
+  .movie-details-card h3 {  
+    margin: 0;  
+    font-size: 16px;  
+    font-weight: bold;  
+  }  
+    
+  .movie-details-card p {  
+    margin: 5px 0;  
+    font-size: 14px;  
+    line-height: 1.4;  
+  }  
+    
+  .movie-details-card.play-btn {  
+    margin-top: 10px;  
+    padding: 5px 10px;  
+    background-color: #e50914;  
+    color: white;  
+    border: none;  
+    border-radius: 3px;  
+    cursor: pointer;  
+  }  
+    
+  .movie-details-card.play-btn:hover {  
+    background-color: #f40612;  
+  }
+  
+
+/* Styling for Top 10 Teen Movies */
+.top-10-teen-movies {
+    padding: 20px;
+    background-color: #141414;
+    margin-top: 50px;
+}
+
+.top-10-teen-movies h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.top-10-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.top-10-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.top-movie-item {
+    display: flex;
+    align-items: center;
+}
+
+.rank-number {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #e50914;
+    margin-right: 20px;
+}
+
+.top-movie-item img {
+    width: 100px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 20px;
+}
+
+.movie-info h3 {
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+/* Add hover effect */
+.top-movie-item:hover img {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+/* General styles for movie sliders */
+.movie-slider-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+.movie-slider {
+    display: flex;
+    transition: transform 0.3s ease-in-out;
+}
+
+.movie-item {
+    position: relative;
+    width: 150px;
+    margin-right: 10px;
+}
+
+.movie-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+.movie-rank {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 18px;
+}

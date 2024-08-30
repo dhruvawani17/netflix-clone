@@ -1,83 +1,108 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Navbar scroll effect
+    // Initialize Constants
     const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-    });
-
-    // Access Token and API Key
-    const accessToken = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyNTNmYjdhNTk0MTkwYzc2ZmJiZDdlNzNmMzQ2NGQ4YiIsIm5iZiI6MTcyNDkwNTMxMy44MzYwMjgsInN1YiI6IjY2Y2Y1M2Y0NGVkNmM3Y2I0ZWEwYTgxNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.zvWm3EvnY3bnPqDzrb7jM0TDaNgOuUUrRGCwA0nlpS4'; // Replace with your actual Access Token
-    const apiKey = '253fb7a594190c76fbbd7e73f3464d8b'; // Replace with your actual API Key
+    const apiKey = '253fb7a594190c76fbbd7e73f3464d8by';
+    const accessToken = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyNTNmYjdhNTk0MTkwYzc2ZmJiZDdlNzNmMzQ2NGQ4YiIsIm5iZiI6MTcyNDk4OTU0OC43NDI2NDYsInN1YiI6IjY2Y2Y1M2Y0NGVkNmM3Y2I0ZWEwYTgxNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.qaeaUM96dK8bV-o16cIw_vxBGY4J1m9bxzNQoM1Fknw';
     const apiBaseURL = 'https://api.themoviedb.org/3';
     const imgBaseURL = 'https://image.tmdb.org/t/p/original';
 
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+        navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
     // Fetch and display the featured movie
     function fetchFeaturedMovie() {
-        fetch(`${apiBaseURL}/movie/popular?api_key=${apiKey}`, {
-            headers: {
-                Authorization: `Bearer ${accessToken}`,
-                'Content-Type': 'application/json;charset=utf-8'
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.results && data.results.length > 0) {
-                const randomIndex = Math.floor(Math.random() * data.results.length);
-                const featuredMovie = data.results[randomIndex];
-
-                const featuredPoster = document.getElementById('featured-poster');
-                const featuredTitle = document.getElementById('featured-title');
-                const featuredOverview = document.getElementById('featured-overview');
-
-                featuredPoster.src = `${imgBaseURL}${featuredMovie.backdrop_path}`;
-                featuredTitle.textContent = featuredMovie.title;
-                featuredOverview.textContent = featuredMovie.overview;
-            } else {
-                console.error('No movies found');
-            }
-        })
-        .catch(error => console.error('Error fetching featured movie:', error));
+        fetch(`${apiBaseURL}/movie/popular?api_key=${apiKey}`, getFetchOptions())
+            .then(response => response.json())
+            .then(data => displayFeaturedMovie(data))
+            .catch(error => console.error('Error fetching featured movie:', error));
     }
 
     // Fetch movie data and populate sliders
     function fetchMovies(endpoint, sliderId) {
-        fetch(`${apiBaseURL}${endpoint}?api_key=${apiKey}`, {
-            headers: {
-                Authorization: `Bearer ${accessToken}`,
-                'Content-Type': 'application/json;charset=utf-8'
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            const slider = document.getElementById(sliderId);
-            data.results.forEach(movie => {
-                const movieItem = document.createElement('div');
-                movieItem.classList.add('movie-item');
-                movieItem.innerHTML = `
-                    <img src="${imgBaseURL}${movie.poster_path}" alt="${movie.title}" />
-                `;
-                movieItem.addEventListener('click', () => {
-                    showTrailer(movie);
-                });
-                slider.appendChild(movieItem);
-            });
-        })
-        .catch(error => console.error('Error fetching movies:', error));
+        fetch(`${apiBaseURL}${endpoint}?api_key=${apiKey}`, getFetchOptions())
+            .then(response => response.json())
+            .then(data => populateSlider(data, sliderId))
+            .catch(error => console.error('Error fetching movies:', error));
     }
 
     // Fetch different movie categories
     fetchMovies('/trending/all/day', 'trending-slider');
     fetchMovies('/movie/popular', 'popular-slider');
-    fetchMovies('/discover/movie?with_genres=27', 'horror-slider'); // 27 is the genre ID for horror
-    fetchMovies('/discover/movie?with_genres=18', 'drama-slider'); // 18 is the genre ID for drama
-    fetchMovies('/discover/movie?with_genres=878', 'sci-fi-slider'); // 878 is the genre ID for sci-fi
+    fetchMovies('/discover/movie?with_genres=27', 'horror-slider');
+    fetchMovies('/discover/movie?with_genres=18', 'drama-slider');
+    fetchMovies('/discover/movie?with_genres=878', 'sci-fi-slider');
+    fetchFeaturedMovie(); // Display the featured movie on page load
 
-    // Fetch and display the featured movie on page load
-    fetchFeaturedMovie();
+    // Display the featured movie on the main page
+    function displayFeaturedMovie(data) {
+        if (data.results && data.results.length > 0) {
+            const randomIndex = Math.floor(Math.random() * data.results.length);
+            const featuredMovie = data.results[randomIndex];
+
+            const featuredPoster = document.getElementById('featured-poster');
+            const featuredTitle = document.getElementById('featured-title');
+            const featuredOverview = document.getElementById('featured-overview');
+
+            featuredPoster.src = `${imgBaseURL}${featuredMovie.backdrop_path}`;
+            featuredTitle.textContent = featuredMovie.title;
+            featuredOverview.textContent = featuredMovie.overview;
+        } else {
+            console.error('No movies found');
+        }
+    }
+
+    // Populate movie sliders with data
+    function populateSlider(data, sliderId) {
+        const slider = document.getElementById(sliderId);
+        data.results.forEach(movie => {
+            const movieItem = createMovieItem(movie);
+            slider.appendChild(movieItem);
+        });
+    }
+
+    // Create a movie item for sliders
+    function createMovieItem(movie) {
+        const movieItem = document.createElement('div');
+        movieItem.classList.add('movie-item');
+        movieItem.innerHTML = `<img src="${imgBaseURL}${movie.poster_path}" alt="${movie.title}" />`;
+
+        movieItem.addEventListener('click', () => showTrailer(movie));
+        movieItem.addEventListener('mouseenter', () => showMovieDetails(movieItem, movie));
+        movieItem.addEventListener('mouseleave', () => hideMovieDetails(movieItem));
+
+        return movieItem;
+    }
+
+    // Show movie details in card format
+    function showMovieDetails(movieItem, movie) {
+        const detailsCard = document.createElement('div');
+        detailsCard.classList.add('movie-details-card');
+        detailsCard.innerHTML = `
+            <h3>${movie.title}</h3>
+            <p><strong>Genre:</strong> ${getGenres(movie.genre_ids)}</p>
+            <p>${movie.overview}</p>
+        `;
+        movieItem.appendChild(detailsCard);
+    }
+
+    // Hide movie details card
+    function hideMovieDetails(movieItem) {
+        const detailsCard = movieItem.querySelector('.movie-details-card');
+        if (detailsCard) movieItem.removeChild(detailsCard);
+    }
+
+    // Utility to get genres by their IDs
+    function getGenres(genreIds) {
+        const genres = {
+            28: 'Action', 12: 'Adventure', 16: 'Animation', 35: 'Comedy', 80: 'Crime',
+            99: 'Documentary', 18: 'Drama', 10751: 'Family', 14: 'Fantasy', 36: 'History',
+            27: 'Horror', 10402: 'Music', 9648: 'Mystery', 10749: 'Romance', 878: 'Science Fiction',
+            10770: 'TV Movie', 53: 'Thriller', 10752: 'War', 37: 'Western'
+        };
+        return genreIds.map(id => genres[id]).join(', ');
+    }
 
     // Show trailer in card format
     function showTrailer(movie) {
@@ -95,29 +120,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Play trailer
     function playTrailer(movieId) {
-        fetch(`${apiBaseURL}/movie/${movieId}/videos?api_key=${apiKey}`, {
-            headers: {
-                Authorization: `Bearer ${accessToken}`,
-                'Content-Type': 'application/json;charset=utf-8'
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            const trailerKey = data.results[0]?.key;
-            if (trailerKey) {
-                const trailerContainer = document.getElementById('trailer-container');
-                trailerContainer.innerHTML = `
-                    <div class="movie-trailer-card">
-                        <iframe src="https://www.youtube.com/embed/${trailerKey}" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                        <button class="close-btn" onclick="closeTrailer()">✖ Close</button>
-                    </div>
-                `;
-                trailerContainer.style.display = 'flex';
-            } else {
-                alert('Trailer not available.');
-            }
-        })
-        .catch(error => console.error('Error fetching trailer:', error));
+        fetch(`${apiBaseURL}/movie/${movieId}/videos?api_key=${apiKey}`, getFetchOptions())
+            .then(response => response.json())
+            .then(data => displayTrailer(data))
+            .catch(error => console.error('Error fetching trailer:', error));
+    }
+
+    // Display trailer in card
+    function displayTrailer(data) {
+        const trailerContainer = document.getElementById('trailer-container');
+        if (data.results.length > 0) {
+            const trailerKey = data.results[0].key;
+            trailerContainer.innerHTML = `
+                <div class="movie-trailer-card">
+                    <iframe src="https://www.youtube.com/embed/${trailerKey}" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    <button class="close-btn" onclick="closeTrailer()">✖ Close</button>
+                </div>
+            `;
+            trailerContainer.style.display = 'flex';
+        } else {
+            alert('Trailer not available.');
+        }
     }
 
     // Close trailer card
@@ -125,14 +148,20 @@ document.addEventListener("DOMContentLoaded", () => {
         const trailerContainer = document.getElementById('trailer-container');
         trailerContainer.style.display = 'none';
     }
-});
 
-// Scroll slider
-function scrollSlider(sliderId, direction) {
-    const slider = document.getElementById(sliderId);
-    if (direction === 'left') {
-        slider.scrollBy({ left: -300, behavior: 'smooth' });
-    } else if (direction === 'right') {
-        slider.scrollBy({ left: 300, behavior: 'smooth' });
+    // Scroll slider function
+    window.scrollSlider = function(sliderId, direction) {
+        const slider = document.getElementById(sliderId);
+        slider.scrollBy({ left: direction === 'left' ? -300 : 300, behavior: 'smooth' });
+    };
+
+    // Fetch options helper
+    function getFetchOptions() {
+        return {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+                'Content-Type': 'application/json;charset=utf-8'
+            }
+        };
     }
-}
+});
