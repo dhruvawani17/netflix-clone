@@ -3,9 +3,326 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Help Center</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Martel+Sans:wght@600&family=Poppins:wght@300;400;700&display=swap');
+
+    body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color:white;
+    color: white;
+}
+
+.logo img {
+    width: 100px;
+}
+
+.auth-buttons .btn {
+    background-color: #e50914;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    margin: 0 5px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-weight: 600;
+}
+
+.auth-buttons .btn.join {
+    background-color: #fff;
+    color:black;
+    border: 2px solid;
+    font-size: 12px;
+}
+
+.main-content {
+    padding: 40px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.help-search {
+    text-align: center;
+}
+
+.help-search h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.search-bar {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.search-bar input {
+    width: 50%;
+    padding: 15px;
+    font-size: 1rem;
+    border: 3px solid transparent;
+    border-image-source: linear-gradient(90deg, #55379f, #ff6f61);
+    border-image-slice: 1;
+    border-radius: 8px;
+    outline: none;
+    width: 1000px;
+    box-shadow: #000;
+}
+
+.search-bar input:focus {
+    border-image-source: linear-gradient(90deg, #54c922, #e50914,rgba(162, 126, 126, 0.416));
+}
+
+.search-bar .search-icon {
+    position: absolute;
+    right: 18%;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #e50914;
+}
+
+.popular-topics p {
+    font-size: 0.9rem;
+}
+
+.popular-topics a {
+    color: #0073e6;
+    text-decoration: none;
+}
+
+.popular-topics a:hover {
+    text-decoration: underline;
+}
+
+.topics {
+    margin-top: 40px;
+}
+
+.topic-category {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: #fff;
+}
+
+.topic-header {
+    padding: 15px 20px;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.topic-content {
+    padding: 10px 20px;
+    display: none;
+}
+
+.quick-links {
+    margin-top: 40px;
+}
+
+.quick-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.quick-links li {
+    margin: 10px 0;
+}
+
+.quick-links a {
+    text-decoration: none;
+    color: #0073e6;
+}
+
+.quick-links a:hover {
+    text-decoration: underline;
+}
+
+.contact {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.contact-btn {
+    background-color: #000;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.footer {
+    background-color: #f1f1f1;
+    padding: 20px;
+    text-align: center;
+}
+
+.footer-links a {
+    margin: 0 10px;
+    color: #666;
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+.language-selector select {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+.help{
+    color: #000;
+    margin-top: 2px;
+    margin-left: 5px;
+    margin-bottom: 30px;
+    padding: 0;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+
+}
+    </style>
 </head>
 <body>
-    
+    <header class="header">
+        <div class="logo">
+            <img src="assets/logo.svg" alt="Netflix Logo">
+        </div>
+        <div class="auth-buttons">
+            <button class="btn join" onclick="window.location.href='http://localhost:3000'">Join Netflix</button>
+            <button class="btn sign-in">Sign In</button>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section class="help-search">
+            <h1>How can we help?</h1>
+            <div class="search-bar">
+                <input type="text" placeholder="Type a question, topic or issue">
+        
+            </div>
+            <div class="popular-topics">
+                <p>Popular topics: 
+                    <a href="#">How to sign up for Netflix</a>, 
+                    <a href="#">Plans and Pricing</a>, 
+                    <a href="#">Can't sign in to Netflix</a>, 
+                    <a href="#">Parental controls on Netflix</a>
+                </p>
+            </div>
+        </section>
+
+        <section class="topics">
+            <h2>Explore Topics</h2>
+            <div class="topic-category">
+                <div class="topic-header" onclick="toggleDropdown('account-billing')">
+                    <span>Account and Billing</span>
+                    <span>&#9662;</span>
+                </div>
+                <div class="topic-content" id="account-billing">
+                    <p>Account Settings</p>
+                    <p>Paying for Netflix</p>
+                </div>
+            </div>
+            <div class="topic-category">
+                <div class="topic-header" onclick="toggleDropdown('fix-problem')">
+                    <span>Fix a Problem</span>
+                    <span>&#9662;</span>
+                </div>
+                <div class="topic-content" id="fix-problem">
+                    <p>Account Issues</p>
+                    <p>Billing Issues</p>
+                    <p>Error Codes</p>
+                    <p>Problems Watching</p>
+                </div>
+            </div>
+            <div class="topic-category">
+                <div class="topic-header" onclick="toggleDropdown('watching-playing')">
+                    <span>Watching and Playing</span>
+                    <span>&#9662;</span>
+                </div>
+                <div class="topic-content" id="watching-playing">
+                    <p>Profiles</p>
+                    <p>Features and Settings</p>
+                    <p>TV Shows and Movies</p>
+                    <p>Parental Controls</p>
+                    <p>Games</p>
+                </div>
+            </div>
+            <div class="topic-category">
+                <div class="topic-header" onclick="toggleDropdown('getting-started')">
+                    <span>Getting Started</span>
+                    <span>&#9662;</span>
+                </div>
+                <div class="topic-content" id="getting-started">
+                    <p>Joining Netflix</p>
+                    <p>Device Setup</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="quick-links">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="#">Content Grievances in India</a></li>
+                <li><a href="#">Reset password</a></li>
+                <li><a href="#">Update email</a></li>
+                <li><a href="#">Get help signing in</a></li>
+                <li><a href="#">Update payment method</a></li>
+                <li><a href="#">Request TV shows or movies</a></li>
+            </ul>
+        </section>
+
+        <section class="contact">
+            <h3>Need more help?</h3>
+            <button class="contact-btn">Contact Us</button>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="language-selector">
+            <select>
+                <option>English</option>
+                <option>Hindi</option>
+            </select>
+        </div>
+        <div class="footer-links">
+            <a href="#">Terms of Use</a>
+            <a href="#">Privacy</a>
+            <a href="#">Cookie Preferences</a>
+            <a href="#">Corporate Information</a>
+        </div>
+    </footer>
+
+    <script>
+        function toggleDropdown(id) {
+    const content = document.getElementById(id);
+    if (content.style.display === "block") {
+        content.style.display = "none";
+    } else {
+        content.style.display = "block";
+    }
+}
+    </script>
 </body>
 </html>
