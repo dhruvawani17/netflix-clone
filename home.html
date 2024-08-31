@@ -23,11 +23,11 @@
                 <li><a href="#">My List</a></li>
             </ul>
         </nav>
-        <div class="profile-icons">
-            <i class="fa fa-search"></i>
-            <i class="fa fa-bell"></i>
-            <i class="fa fa-user"></i>
-        </div>
+        <form id="search-form">
+            <input type="text" id="search-input" placeholder="Search for movies..." class="search-input">
+            <button id="search-btn" class="search-btn">🔍</button>
+        </form>
+        
     </header>
 
     <section class="featured-movie">
@@ -97,10 +97,17 @@
             <span class="slider-arrow right" onclick="scrollSlider('top-ten-slider', 'right')">&gt;</span>
         </div>
     </section>
-    
 
     <div id="trailer-container" class="trailer-container"></div>
 
+    <section class="movie-section" id="search-results" style="display: none;">
+        <h2>Search Results</h2>
+        <div class="movie-slider-container">
+            <div class="movie-slider" id="search-slider"></div>
+        </div>
+    </section>
+
     <script defer src="home.js"></script>
 </body>
+
 </html>
