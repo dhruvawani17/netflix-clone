@@ -87,6 +87,9 @@ app.get('/sign-in', (req, res) => {
 app.get('/home', (req, res) => {
     res.sendFile(path.join(__dirname, 'home.html'));
 });
+app.get('/list', (req, res) => {
+    res.sendFile(path.join(__dirname, 'home.html'));
+});
 
 // Start the server
 const PORT = process.env.PORT || 3000;

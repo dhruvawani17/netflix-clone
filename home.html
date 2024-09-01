@@ -20,7 +20,7 @@
                 <li><a href="#">TV Shows</a></li>
                 <li><a href="#">Movies</a></li>
                 <li><a href="#">New & Popular</a></li>
-                <li><a href="#">My List</a></li>
+                <li><a href="localhost:3000/list">My List</a></li>
             </ul>
         </nav>
         <form id="search-form">
@@ -112,6 +112,27 @@
         </div>
     </section>
 
+    <section class="movie-section" id="animated-movies">
+        <h2>Animated Movies</h2>
+        <div class="movie-slider-container">
+            <span class="slider-arrow left" onclick="scrollSlider('animated-slider', 'left')">&lt;</span>
+            <div class="movie-slider" id="animated-slider">
+                <!-- Movies will be dynamically populated here -->
+            </div>
+            <span class="slider-arrow right" onclick="scrollSlider('animated-slider', 'right')">&gt;</span>
+        </div>
+    </section>
+    <section class="movie-section" id="upcoming-movies">
+        <h2>Upcoming Movies</h2>
+        <div class="movie-slider-container">
+            <span class="slider-arrow left" onclick="scrollSlider('upcoming-slider', 'left')">&lt;</span>
+            <div class="movie-slider" id="upcoming-slider">
+                <!-- Movies will be dynamically populated here -->
+            </div>
+            <span class="slider-arrow right" onclick="scrollSlider('upcoming-slider', 'right')">&gt;</span>
+        </div>
+    </section>
+
     <div id="trailer-container" class="trailer-container"></div>
 
     <section class="movie-section" id="search-results" style="display: none;">
@@ -120,6 +141,7 @@
             <div class="movie-slider" id="search-slider"></div>
         </div>
     </section>
+    
 
     <script defer src="home.js"></script>
 </body>

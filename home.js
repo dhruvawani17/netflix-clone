@@ -35,7 +35,8 @@ document.addEventListener("DOMContentLoaded", () => {
     fetchMovies('/discover/movie?with_genres=878', 'sci-fi-slider');
     fetchMovies('/discover/movie?with_genres=80', 'crime-slider');
     fetchMovies('/discover/movie?with_genres=28', 'action-slider');
-
+    fetchMovies('/discover/movie?with_genres=35', 'animated-slider');
+    fetchMovies('/movie/upcoming', 'upcoming-slider');
     fetchFeaturedMovie(); // Display the featured movie on page load
 
     // Display the featured movie on the main page
