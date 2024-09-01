@@ -377,3 +377,11 @@ body {
     font-size: 18px;
 }
 
+.search-input{
+background-color: transparent;
+border: 2px  solid white;
+border-radius: 5px;
+height: 25px;
+
+
+}

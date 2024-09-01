@@ -27,6 +27,9 @@
             <input type="text" id="search-input" placeholder="Search for movies..." class="search-input">
             <button id="search-btn" class="search-btn">🔍</button>
         </form>
+        <div id="search-results" style="display:none;">
+            <div id="search-slider"></div>
+        </div>
         
     </header>
 
@@ -87,14 +90,25 @@
         </div>
     </section>
 
-    <section class="movie-section" id="top-ten-movies">
-        <h2>Top 10 Movies</h2>
+    <section class="movie-section" id="crime-movies">
+        <h2>Crime Movies</h2>
         <div class="movie-slider-container">
-            <span class="slider-arrow left" onclick="scrollSlider('top-ten-slider', 'left')">&lt;</span>
-            <div class="movie-slider" id="top-ten-slider">
+            <span class="slider-arrow left" onclick="scrollSlider('crime-slider', 'left')">&lt;</span>
+            <div class="movie-slider" id="crime-slider">
                 <!-- Movies will be dynamically populated here -->
             </div>
-            <span class="slider-arrow right" onclick="scrollSlider('top-ten-slider', 'right')">&gt;</span>
+            <span class="slider-arrow right" onclick="scrollSlider('crime-slider', 'right')">&gt;</span>
+        </div>
+    </section>
+
+    <section class="movie-section" id="action-movies">
+        <h2>Action Movies</h2>
+        <div class="movie-slider-container">
+            <span class="slider-arrow left" onclick="scrollSlider('action-slider', 'left')">&lt;</span>
+            <div class="movie-slider" id="action-slider">
+                <!-- Movies will be dynamically populated here -->
+            </div>
+            <span class="slider-arrow right" onclick="scrollSlider('action-slider', 'right')">&gt;</span>
         </div>
     </section>
 
