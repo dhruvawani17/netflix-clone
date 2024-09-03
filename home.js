@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
     // Initialize Constants
     const navbar = document.getElementById('navbar');
-    const apiKey = '253fb7a594190c76fbbd7e73f3464d8by';
-    const accessToken = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyNTNmYjdhNTk0MTkwYzc2ZmJiZDdlNzNmMzQ2NGQ4YiIsIm5iZiI6MTcyNDk4OTU0OC43NDI2NDYsInN1YiI6IjY2Y2Y1M2Y0NGVkNmM3Y2I0ZWEwYTgxNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.qaeaUM96dK8bV-o16cIw_vxBGY4J1m9bxzNQoM1Fknw';
+    const apiKey = '253fb7a594190c76fbbd7e73f3464d8b';
+    const accessToken = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyNTNmYjdhNTk0MTkwYzc2ZmJiZDdlNzNmMzQ2NGQ4YiIsIm5iZiI6MTcyNTI1NDc2MC4xNjI4NDUsInN1YiI6IjY2Y2Y1M2Y0NGVkNmM3Y2I0ZWEwYTgxNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.VhtTDmeAkIHhHqjX3W4dNK6l-xSiaZWChiXAHX8fUtI';
     const apiBaseURL = 'https://api.themoviedb.org/3';
     const imgBaseURL = 'https://image.tmdb.org/t/p/original';
 
@@ -87,8 +87,10 @@ document.addEventListener("DOMContentLoaded", () => {
             <h3>${movie.title}</h3>
             <p><strong>Genre:</strong> ${getGenres(movie.genre_ids)}</p>
             <p>${movie.overview}</p>
+            <button class="add-to-watchlist">+</button>
         `;
         movieItem.appendChild(detailsCard);
+        attachWatchlistButtonEvent();
     }
 
     // Hide movie details card
@@ -172,56 +174,41 @@ document.addEventListener("DOMContentLoaded", () => {
     // Search functionality
     const searchForm = document.getElementById('search-form');
     const searchInput = document.getElementById('search-input');
-    const mainContent = document.getElementById('main-content'); // The main content section
-    const searchResultsSection = document.getElementById('search-results');
-    const searchSlider = document.getElementById('search-slider');
 
-    searchForm.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        const query = searchInput.value.trim();
-        if (query === '') return;
-
-        // Clear previous search results
-        searchSlider.innerHTML = '';
-
-        // Hide the main content
-        mainContent.style.display = 'none';
-
-        // Fetch search results from API
-        try {
-            const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${encodeURIComponent(query)}`);
-            const data = await response.json();
-            const movies = data.results;
-
-            if (movies.length > 0) {
-                searchResultsSection.style.display = 'block';
-                movies.forEach(movie => {
-                    const movieItem = document.createElement('div');
-                    movieItem.classList.add('movie-item');
-                    const moviePoster = movie.poster_path ? `${imgBaseURL}${movie.poster_path}` : 'path_to_default_image';
-                    movieItem.innerHTML = `<img src="${moviePoster}" alt="${movie.title}" />`;
-
-                    // Append movie item to the search results slider
-                    searchSlider.appendChild(movieItem);
-                });
-            } else {
-                searchSlider.innerHTML = '<p>No results found.</p>';
-            }
-        } catch (error) {
-            console.error('Error fetching search results:', error);
+    searchForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const query = searchInput.value;
+        if (query) {
+            fetch(`${apiBaseURL}/search/movie?query=${query}&api_key=${apiKey}`, getFetchOptions())
+                .then(response => response.json())
+                .then(data => {
+                    const resultsContainer = document.getElementById('search-results');
+                    resultsContainer.innerHTML = ''; // Clear previous results
+                    data.results.forEach(movie => {
+                        const resultItem = createMovieItem(movie);
+                        resultsContainer.appendChild(resultItem);
+                    });
+                })
+                .catch(error => console.error('Error searching movies:', error));
         }
     });
-});
 
-const options = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyNTNmYjdhNTk0MTkwYzc2ZmJiZDdlNzNmMzQ2NGQ4YiIsIm5iZiI6MTcyNTEwNTM4MS4xODI4OTksInN1YiI6IjY2Y2Y1M2Y0NGVkNmM3Y2I0ZWEwYTgxNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.z4E1z0JUbDPMVCR6G5rGOLWTms-Mah2z4KCE8XCFMj4'
+    // Attach event listeners
+    function attachWatchlistButtonEvent() {
+        document.querySelectorAll('.add-to-watchlist').forEach(button => {
+            button.addEventListener('click', (event) => {
+                const movieTitle = button.parentElement.querySelector('h3').textContent;
+                addToWatchlist(movieTitle);
+            });
+        });
     }
-  };
-  
-  fetch('https://api.themoviedb.org/3/search/movie?include_adult=false&language=en-US&page=1', options)
-    .then(response => response.json())
-    .then(response => console.log(response))
-    .catch(err => console.error(err));
+
+    // Add movie to watchlist
+    function addToWatchlist(title) {
+        const watchlist = JSON.parse(localStorage.getItem('watchlist')) || [];
+        if (!watchlist.includes(title)) {
+            watchlist.push(title);
+            localStorage.setItem('watchlist', JSON.stringify(watchlist));
+        }
+    }
+});

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Watchlist</title>
+    <link rel="icon" type="image/x-icon" href="assets/netflix-1-logo-svgrepo-com.svg">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            width: 90%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .series-item {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .series-card {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 200px;
+            text-align: center;
+        }
+        .series-card img {
+            width: 100%;
+            height: auto;
+        }
+        .series-card .details {
+            padding: 15px;
+        }
+        .series-card h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>My Watchlist</h1>
+        <div class="series-item" id="watchlist"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const watchlistContainer = document.getElementById('watchlist');
+            const apiKey = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyNTNmYjdhNTk0MTkwYzc2ZmJiZDdlNzNmMzQ2NGQ4YiIsIm5iZiI6MTcyNTE5OTA5MC43ODAxNjIsInN1YiI6IjY2Y2Y1M2Y0NGVkNmM3Y2I0ZWEwYTgxNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.RCWPVGznoKS-g93MY0_sqBzL_6Qmeq4qF_-g5fZsc0I'; // Your API key
+            const options = {
+                method: 'GET',
+                headers: {
+                    accept: 'application/json',
+                    Authorization: `Bearer ${apiKey}`
+                }
+            };
+
+            const watchlist = JSON.parse(localStorage.getItem('watchlist')) || [];
+
+            if (watchlist.length === 0) {
+                watchlistContainer.innerHTML = '<p>Your watchlist is empty.</p>';
+                return;
+            }
+
+            const fetchSeriesDetails = async () => {
+                for (const id of watchlist) {
+                    try {
+                        const response = await fetch(`https://api.themoviedb.org/3/tv/${id}?language=en-US`, options);
+                        const details = await response.json();
+                        const card = document.createElement('div');
+                        card.className = 'series-card';
+                        card.innerHTML = `
+                            <img src="https://image.tmdb.org/t/p/w500${details.poster_path}" alt="${details.name}">
+                            <div class="details">
+                                <h3>${details.name}</h3>
+                                <p>${details.overview || 'No description available.'}</p>
+                            </div>
+                        `;
+                        watchlistContainer.appendChild(card);
+                    } catch (err) {
+                        console.error('Error fetching TV series details:', err);
+                    }
+                }
+            };
+
+            fetchSeriesDetails();
+        });
+    </script>
+</body>
+</html>

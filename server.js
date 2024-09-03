@@ -87,8 +87,11 @@ app.get('/sign-in', (req, res) => {
 app.get('/home', (req, res) => {
     res.sendFile(path.join(__dirname, 'home.html'));
 });
+app.get('/tv', (req, res) => {
+    res.sendFile(path.join(__dirname, 'tv.html'));
+});
 app.get('/list', (req, res) => {
-    res.sendFile(path.join(__dirname, 'home.html'));
+    res.sendFile(path.join(__dirname, 'list.html'));
 });
 
 // Start the server
