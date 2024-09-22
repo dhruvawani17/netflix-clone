@@ -16,10 +16,8 @@
         </div>
         <nav>
             <ul class="nav-links">
-                <li><a href="#">Home</a></li>
                 <li><a href="http://localhost:3000/tv">TV Shows</a></li>
-                <li><a href="#">Movies</a></li>
-                <li><a href="#">New & Popular</a></li>
+                <li><a href="http://localhost:3000/movies">Movies</a></li>
                 <li><a href="http://localhost:3000/list">My List</a></li>
             </ul>
         </nav>
@@ -30,7 +28,6 @@
         <div id="search-results" style="display:none;">
             <div id="search-slider"></div>
         </div>
-        
     </header>
 
     <section class="featured-movie">
@@ -51,7 +48,6 @@
             <span class="slider-arrow left" onclick="scrollSlider('trending-slider', 'left')">&lt;</span>
             <div class="movie-slider" id="trending-slider"></div>
             <span class="slider-arrow right" onclick="scrollSlider('trending-slider', 'right')">&gt;</span>
-        
         </div>
     </section>
 
@@ -74,7 +70,7 @@
     </section>
 
     <section class="movie-section" id="drama-movies">
-        <h2>Drama Movies</h2>
+        <h2>Drama Movies</h> 
         <div class="movie-slider-container">
             <span class="slider-arrow left" onclick="scrollSlider('drama-slider', 'left')">&lt;</span>
             <div class="movie-slider" id="drama-slider"></div>
@@ -135,14 +131,6 @@
     </section>
 
     <div id="trailer-container" class="trailer-container"></div>
-
-    <section class="movie-section" id="search-results" style="display: none;">
-        <h2>Search Results</h2>
-        <div class="movie-slider-container">
-            <div class="movie-slider" id="search-slider"></div>
-        </div>
-    </section>
-    
 
     <script defer src="home.js"></script>
 </body>

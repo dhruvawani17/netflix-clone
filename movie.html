@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TV Series</title>
+    <title>Movies</title>
     <link rel="icon" type="image/x-icon" href="assets/netflix-1-logo-svgrepo-com.svg">
     <style>
-        body {
+ body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -270,20 +270,18 @@ width: 100px;
             </ul>
         </nav>
     </header>
-    <br>
-    <br>
+    <br><br>
     <div class="container">
-        <h1 class="heading">Trending TV Series</h1>
-        <div class="series-item" id="series-list">Loading...</div>
-        
+        <h1 class="heading">Trending Movies</h1>
+        <div class="series-item" id="movie-list">Loading...</div>
     </div>
 
     <!-- Modal for trailer -->
     <div id="trailer-modal">
         <button class="close-btn">&times;</button>
-        <iframe id="trailer-iframe" src="" frameborder="0"
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe id="trailer-iframe" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
+    
     <div class="footer">
         <div class="footer-content">
             <div class="contact" data-en="Questions? Call 000-800-919-1694" data-hi="प्रश्न हैं? कॉल करें 000-800-919-1694">Questions? Call 000-800-919-1694</div>
@@ -295,9 +293,10 @@ width: 100px;
                 <a onclick="window.location.href='http://localhost:3000/terms-use'" data-en="Terms of Use" data-hi="उपयोग की शर्तें">Terms of Use</a>
                 <a onclick="window.location.href='http://localhost:3000/privacy'" data-en="Privacy" data-hi="गोपनीयता">Privacy</a>
             </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const seriesList = document.getElementById('series-list');
+            const movieList = document.getElementById('movie-list');
             const trailerModal = document.getElementById('trailer-modal');
             const trailerIframe = document.getElementById('trailer-iframe');
             const closeBtn = document.querySelector('.close-btn');
@@ -313,94 +312,99 @@ width: 100px;
                 }
             };
 
-            fetch('https://api.themoviedb.org/3/trending/tv/day?language=en-US', optionsTMDB)
-             
-            .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! Status: ${response.status}`);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    if (!data.results || data.results.length === 0) {
-                        throw new Error('No TV series found');
-                    }
-                    const series = data.results;
-                    seriesList.innerHTML = ''; // Clear the "Loading..." text
-                    series.forEach(show => {
-                        const card = document.createElement('div');
-                        card.className = 'series-card';
-                        card.dataset.id = show.id;
-                        card.innerHTML = `
-                            <img src="https://image.tmdb.org/t/p/w500${show.poster_path}" alt="${show.name}">
-                            <div class="details">
-                                <h3>${show.name}</h3>
-                            </div>
-                            <div class="info" id="info-${show.id}">
-                                <p>Loading...</p>
-                            </div>
-                            <button class="add-to-watchlist" data-id="${show.id}">+</button>
-                            <button class="play-trailer" data-id="${show.id}">▶</button>
-                        `;
-                        seriesList.appendChild(card);
+            const fetchMovies = async (url) => {
+                const response = await fetch(url, optionsTMDB);
+                if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+                return response.json();
+            };
 
-                        // Fetch detailed data for each series on hover
-                        card.addEventListener('mouseenter', () => {
-                            const infoDiv = document.getElementById(`info-${show.id}`);
-                            if (infoDiv.innerHTML.includes('Loading...')) {
-                                fetch(`https://api.themoviedb.org/3/tv/${show.id}?language=en-US`, optionsTMDB)
+            const movieUrls = [
+                'https://api.themoviedb.org/3/movie/popular?language=en-US&page=1',
+                'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1',
+                'https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1',
+            ];
+
+            Promise.all(movieUrls.map(fetchMovies))
+                .then(dataArray => {
+                    movieList.innerHTML = ''; // Clear the "Loading..." text
+
+                    dataArray.forEach(data => {
+                        const movies = data.results;
+                        movies.forEach(movie => {
+                            const card = document.createElement('div');
+                            card.className = 'series-card';
+                            card.dataset.id = movie.id;
+                            card.innerHTML = `
+                                <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
+                                <div class="details">
+                                    <h3>${movie.title}</h3>
+                                </div>
+                                <div class="info" id="info-${movie.id}">
+                                    <p>Loading...</p>
+                                </div>
+                                <button class="add-to-watchlist" data-id="${movie.id}">+</button>
+                                <button class="play-trailer" data-id="${movie.id}">▶</button>
+                            `;
+                            movieList.appendChild(card);
+
+                            // Fetch detailed data for each movie on hover
+                            card.addEventListener('mouseenter', () => {
+                                const infoDiv = document.getElementById(`info-${movie.id}`);
+                                if (infoDiv.innerHTML.includes('Loading...')) {
+                                    fetch(`https://api.themoviedb.org/3/movie/${movie.id}?language=en-US`, optionsTMDB)
+                                        .then(response => response.json())
+                                        .then(details => {
+                                            const overview = details.overview ? details.overview : 'No description available.';
+                                            infoDiv.innerHTML = `
+                                                <h4>${details.title}</h4>
+                                                <p>${overview}</p>
+                                            `;
+                                        })
+                                        .catch(err => {
+                                            console.error('Error fetching movie details:', err);
+                                            infoDiv.innerHTML = `<p>Failed to load details.</p>`;
+                                        });
+                                }
+                            });
+
+                            // Add to watchlist functionality
+                            const addToWatchlistButton = card.querySelector('.add-to-watchlist');
+                            addToWatchlistButton.addEventListener('click', () => {
+                                const watchlist = JSON.parse(localStorage.getItem('watchlist')) || [];
+                                if (!watchlist.includes(movie.id)) {
+                                    watchlist.push(movie.id);
+                                    localStorage.setItem('watchlist', JSON.stringify(watchlist));
+                                    alert(`${movie.title} added to watchlist!`);
+                                } else {
+                                    alert(`${movie.title} is already in your watchlist.`);
+                                }
+                            });
+
+                            // Play trailer functionality
+                            const playTrailerButton = card.querySelector('.play-trailer');
+                            playTrailerButton.addEventListener('click', () => {
+                                fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${movie.title} trailer&key=${apiKeyYouTube}`)
                                     .then(response => response.json())
-                                    .then(details => {
-                                        const overview = details.overview ? details.overview : 'No description available.';
-                                        infoDiv.innerHTML = `
-                                            <h4>${details.name}</h4>
-                                            <p>${overview}</p>
-                                        `;
+                                    .then(data => {
+                                        if (data.items && data.items.length > 0) {
+                                            const videoId = data.items[0].id.videoId;
+                                            trailerIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+                                            trailerModal.style.display = 'flex';
+                                        } else {
+                                            alert('Trailer not found.');
+                                        }
                                     })
                                     .catch(err => {
-                                        console.error('Error fetching TV series details:', err);
-                                        infoDiv.innerHTML = `<p>Failed to load details.</p>`;
+                                        console.error('Error fetching trailer:', err);
+                                        alert('Failed to load trailer.');
                                     });
-                            }
-                        });
-
-                        // Add to watchlist functionality
-                        const addToWatchlistButton = card.querySelector('.add-to-watchlist');
-                        addToWatchlistButton.addEventListener('click', () => {
-                            const watchlist = JSON.parse(localStorage.getItem('watchlist')) || [];
-                            if (!watchlist.includes(show.id)) {
-                                watchlist.push(show.id);
-                                localStorage.setItem('watchlist', JSON.stringify(watchlist));
-                                alert(`${show.name} added to watchlist!`);
-                            } else {
-                                alert(`${show.name} is already in your watchlist.`);
-                            }
-                        });
-
-                        // Play trailer functionality
-                        const playTrailerButton = card.querySelector('.play-trailer');
-                        playTrailerButton.addEventListener('click', () => {
-                            fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${show.name} trailer&key=${apiKeyYouTube}`)
-                                .then(response => response.json())
-                                .then(data => {
-                                    if (data.items && data.items.length > 0) {
-                                        const videoId = data.items[0].id.videoId;
-                                        trailerIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-                                        trailerModal.style.display = 'flex';
-                                    } else {
-                                        alert('Trailer not found.');
-                                    }
-                                })
-                                .catch(err => {
-                                    console.error('Error fetching trailer:', err);
-                                    alert('Failed to load trailer.');
-                                });
+                            });
                         });
                     });
                 })
                 .catch(err => {
-                    console.error('Error fetching TV series:', err);
-                    seriesList.innerHTML = `<p>Failed to load TV series. Please try again later.</p>`;
+                    console.error('Error fetching movies:', err);
+                    movieList.innerHTML = `<p>Failed to load movies. Please try again later.</p>`;
                 });
 
             // Close trailer modal

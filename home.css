@@ -537,3 +537,50 @@ height: 25px;
 .movie-card:hover .add-to-watchlist {
     opacity: 1;
 }
+
+/* Trailer Container Styling */
+.trailer-container {
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    position: relative;
+    margin-top: 20px;
+}
+
+.trailer-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+/* Add these styles for centering the trailer */
+#trailer-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 800px;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    z-index: 1000;
+    display: none; /* Hidden by default */
+}
+
+#trailer-container iframe {
+    width: 100%;
+    height: 450px;
+}
+
+#close-trailer {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 16px;
+    z-index: 1001;
+}

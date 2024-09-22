@@ -94,6 +94,10 @@ app.get('/list', (req, res) => {
     res.sendFile(path.join(__dirname, 'list.html'));
 });
 
+app.get('/movies', (req, res) => {
+    res.sendFile(path.join(__dirname, 'movie.html'));
+});
+
 // Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

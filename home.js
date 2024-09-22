@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Initialize Constants
     const navbar = document.getElementById('navbar');
     const apiKey = '253fb7a594190c76fbbd7e73f3464d8b';
     const accessToken = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyNTNmYjdhNTk0MTkwYzc2ZmJiZDdlNzNmMzQ2NGQ4YiIsIm5iZiI6MTcyNTI1NDc2MC4xNjI4NDUsInN1YiI6IjY2Y2Y1M2Y0NGVkNmM3Y2I0ZWEwYTgxNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.VhtTDmeAkIHhHqjX3W4dNK6l-xSiaZWChiXAHX8fUtI';
     const apiBaseURL = 'https://api.themoviedb.org/3';
     const imgBaseURL = 'https://image.tmdb.org/t/p/original';
+    const API_KEY = 'AIzaSyDhzAO-nRc-oNlbJiNBbfio74Rf1A2W99s'; // Replace with your YouTube API key
 
     // Navbar scroll effect
     window.addEventListener('scroll', () => {
@@ -70,9 +70,15 @@ document.addEventListener("DOMContentLoaded", () => {
     function createMovieItem(movie) {
         const movieItem = document.createElement('div');
         movieItem.classList.add('movie-item');
-        movieItem.innerHTML = `<img src="${imgBaseURL}${movie.poster_path}" alt="${movie.title}" />`;
+        movieItem.innerHTML = `
+            <img src="${imgBaseURL}${movie.poster_path}" alt="${movie.title}" />
+            <button class="play-button" style="display:none;">▶ Play</button>
+        `;
 
-        movieItem.addEventListener('click', () => showTrailer(movie));
+        // Store the movie title in a data attribute for easy access
+        movieItem.dataset.title = movie.title;
+
+        // Event Listeners
         movieItem.addEventListener('mouseenter', () => showMovieDetails(movieItem, movie));
         movieItem.addEventListener('mouseleave', () => hideMovieDetails(movieItem));
 
@@ -88,15 +94,30 @@ document.addEventListener("DOMContentLoaded", () => {
             <p><strong>Genre:</strong> ${getGenres(movie.genre_ids)}</p>
             <p>${movie.overview}</p>
             <button class="add-to-watchlist">+</button>
+            <button class="play-trailer-button">▶</button>
         `;
         movieItem.appendChild(detailsCard);
-        attachWatchlistButtonEvent();
+
+        // Show play button
+        const playButton = movieItem.querySelector('.play-button');
+        playButton.style.display = 'block';
+
+        // Attach event to play button
+        const playTrailerButton = detailsCard.querySelector('.play-trailer-button');
+        playTrailerButton.addEventListener('click', async () => {
+            const videoId = await searchTrailer(movie.title);
+            displayTrailer(videoId);
+        });
     }
 
     // Hide movie details card
     function hideMovieDetails(movieItem) {
         const detailsCard = movieItem.querySelector('.movie-details-card');
         if (detailsCard) movieItem.removeChild(detailsCard);
+
+        // Hide play button
+        const playButton = movieItem.querySelector('.play-button');
+        playButton.style.display = 'none';
     }
 
     // Utility to get genres by their IDs
@@ -110,90 +131,31 @@ document.addEventListener("DOMContentLoaded", () => {
         return genreIds.map(id => genres[id]).join(', ');
     }
 
-    // Show trailer in card format
-    function showTrailer(movie) {
-        const trailerContainer = document.getElementById('trailer-container');
-        trailerContainer.innerHTML = `
-            <div class="movie-trailer-card">
-                <h3>${movie.title}</h3>
-                <p>${movie.overview}</p>
-                <button class="play-btn" onclick="playTrailer('${movie.id}')">▶ Play Trailer</button>
-                <button class="close-btn" onclick="closeTrailer()">✖ Close</button>
-            </div>
-        `;
-        trailerContainer.style.display = 'flex';
-    }
+    // Search for a movie trailer on YouTube
+    async function searchTrailer(movieTitle) {
+        const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&key=${API_KEY}&q=${encodeURIComponent(movieTitle)}+trailer`;
+        const response = await fetch(url);
+        const data = await response.json();
 
-    // Play trailer
-    function playTrailer(movieId) {
-        fetch(`${apiBaseURL}/movie/${movieId}/videos?api_key=${apiKey}`, getFetchOptions())
-            .then(response => response.json())
-            .then(data => displayTrailer(data))
-            .catch(error => console.error('Error fetching trailer:', error));
-    }
-
-    // Display trailer in card
-    function displayTrailer(data) {
-        const trailerContainer = document.getElementById('trailer-container');
-        if (data.results.length > 0) {
-            const trailerKey = data.results[0].key;
-            trailerContainer.innerHTML = `
-                <div class="movie-trailer-card">
-                    <iframe src="https://www.youtube.com/embed/${trailerKey}" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                    <button class="close-btn" onclick="closeTrailer()">✖ Close</button>
-                </div>
-            `;
-            trailerContainer.style.display = 'flex';
+        if (data.items && data.items.length > 0) {
+            return data.items[0].id.videoId; // Return the first video ID
         } else {
-            alert('Trailer not available.');
+            console.error('No trailer found for:', movieTitle);
+            return null;
         }
     }
 
-    // Close trailer card
-    function closeTrailer() {
-        const trailerContainer = document.getElementById('trailer-container');
-        trailerContainer.style.display = 'none';
-    }
-
-    // Scroll slider function
-    window.scrollSlider = function(sliderId, direction) {
-        const slider = document.getElementById(sliderId);
-        slider.scrollBy({ left: direction === 'left' ? -300 : 300, behavior: 'smooth' });
-    };
-
-    // Fetch options helper
-    function getFetchOptions() {
-        return {
-            headers: {
-                Authorization: `Bearer ${accessToken}`,
-                'Content-Type': 'application/json;charset=utf-8'
-            }
-        };
-    }
-
-    // Search functionality
-    const searchForm = document.getElementById('search-form');
-    const searchInput = document.getElementById('search-input');
-
-    searchForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-        const query = searchInput.value;
-        if (query) {
-            fetch(`${apiBaseURL}/search/movie?query=${query}&api_key=${apiKey}`, getFetchOptions())
-                .then(response => response.json())
-                .then(data => {
-                    const resultsContainer = document.getElementById('search-results');
-                    resultsContainer.innerHTML = ''; // Clear previous results
-                    data.results.forEach(movie => {
-                        const resultItem = createMovieItem(movie);
-                        resultsContainer.appendChild(resultItem);
-                    });
-                })
-                .catch(error => console.error('Error searching movies:', error));
+    // Display the trailer in the trailer container
+    function displayTrailer(videoId) {
+        if (videoId) {
+            const trailerContainer = document.getElementById('trailer-container');
+            trailerContainer.innerHTML = `
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            `;
         }
-    });
+    }
 
-    // Attach event listeners
+    // Attach event listeners for the watchlist buttons
     function attachWatchlistButtonEvent() {
         document.querySelectorAll('.add-to-watchlist').forEach(button => {
             button.addEventListener('click', (event) => {
@@ -210,5 +172,21 @@ document.addEventListener("DOMContentLoaded", () => {
             watchlist.push(title);
             localStorage.setItem('watchlist', JSON.stringify(watchlist));
         }
+    }
+
+    // Scroll slider function
+    window.scrollSlider = function(sliderId, direction) {
+        const slider = document.getElementById(sliderId);
+        slider.scrollBy({ left: direction === 'left' ? -300 : 300, behavior: 'smooth' });
+    };
+
+    // Fetch options helper
+    function getFetchOptions() {
+        return {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+                'Content-Type': 'application/json;charset=utf-8'
+            }
+        };
     }
 });
